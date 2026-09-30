@@ -162,11 +162,6 @@ addBlock('cover','cover',b=>{
   const ban=bannerBlock(DATA.title,true); ban.querySelectorAll('.r').forEach(r=>r.dataset.speed=3); ban.style.marginTop='calc(var(--lh)*2)'; b.append(ban);
   const by=el('div','center'); by.setAttribute('aria-hidden','true'); by.append(blank(), row('by Danny Collier')); b.append(by);
 });
-addBlock('copyright','copyright',b=>{
-  const d=el('div','center');
-  ['Copyright © Danny Collier.','All rights reserved.','police-cop.com'].forEach(t=>d.append(row(t)));
-  b.append(d);
-}, 3);
 addBlock('dedication','dedication',b=>{
   const d=el('div'); d.style.paddingLeft='min(12ch,15cqi)';
   ['For Bryan Hodges,','who first invented and then','forgot Police Cop.'].forEach(t=>d.append(row(t,'it')));
