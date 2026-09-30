@@ -2022,8 +2022,10 @@ const snd = {
     am.gain.setValueAtTime(.5,ctx.currentTime);
     src.start(); lfo.start();
     audio={ctx,out};
+    ctx.onstatechange=paintSnd;
   },
-  wake(){ if(!this.on) return; if(!audio) this.init(); if(audio && audio.ctx.state!=='running') audio.ctx.resume(); },
+  running(){ return !!audio && audio.ctx.state==='running'; },
+  wake(){ if(!this.on) return; if(!audio) this.init(); if(audio && !this.running()) audio.ctx.resume(); },
   hush(){ if(!audio) return; const g=audio.out.gain, t=audio.ctx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(0,t); audio.ctx.suspend(); },
   buzz(v){ if(!this.on||!audio) return; audio.out.gain.setTargetAtTime(v?.18:0, audio.ctx.currentTime, .012); },
   thunk(){
@@ -2034,16 +2036,28 @@ const snd = {
     o.connect(g).connect(ctx.destination); o.start(); o.stop(ctx.currentTime+.09);
   }
 };
+// Three states, not two: sound can be on but still held back by the browser until the
+// reader's first gesture. Then the button reads [start sound], and pressing it starts
+// the sound rather than switching it off.
 const btnSnd=document.getElementById('snd');
-function paintSnd(){ btnSnd.textContent = snd.on ? '[sound on]' : '[sound off]'; btnSnd.setAttribute('aria-pressed', snd.on); }
+function paintSnd(){
+  btnSnd.textContent = !snd.on ? '[sound off]' : snd.running() ? '[sound on]' : '[start sound]';
+  btnSnd.setAttribute('aria-pressed', snd.on);
+}
+// noted at press time, before wake() runs, because the press itself is the gesture that releases the audio
+let pressedToStart=false;
 btnSnd.onclick=()=>{
+  if(pressedToStart){ pressedToStart=false; snd.wake(); paintSnd(); return; }
   snd.on=!snd.on; store.set(snd.on?'on':'off');
   if(snd.on) snd.wake(); else snd.hush();
   paintSnd();
 };
 paintSnd();
 // unlock on the first gesture, and again after iOS interrupts the context
-['pointerdown','keydown','touchend'].forEach(t=>addEventListener(t,()=>snd.wake(),{capture:true,passive:true}));
+['pointerdown','keydown','touchend'].forEach(t=>addEventListener(t,e=>{
+  pressedToStart = e.target===btnSnd && snd.on && !snd.running();
+  snd.wake();
+},{capture:true,passive:true}));
 // a hidden tab stops the animation frames that would otherwise turn the buzz off
 document.addEventListener('visibilitychange',()=>{ if(document.hidden) snd.buzz(false); });
 
