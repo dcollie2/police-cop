@@ -22,6 +22,9 @@ branch as-is (`.nojekyll` keeps Jekyll out of the way; `CNAME` holds the custom 
   the reader clicks it or presses Escape.
 - **Reduced motion.** With `prefers-reduced-motion`, everything is printed at once.
 - **Light and dark** follow the system setting.
+- **Page views** go to [GoatCounter](https://police-cop.goatcounter.com) via the script tag
+  at the end of `index.html`. It sets no cookies and skips localhost, so it needs no consent
+  notice and does not count visits while working locally.
 
 Other files: `fonts/` (Courier Prime, self-hosted under the SIL Open Font License,
 see `fonts/OFL.txt`), `favicon.*` and `apple-touch-icon.png`, `og-image.png` for
