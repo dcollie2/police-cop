@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.classList.add('booting')</script>
 <title>Police Cop: poems by Danny Collier</title>
 <meta name="description" content="Police Cop, a book of poems by Danny Collier, printed line by line on continuous-feed paper.">
 <link rel="canonical" href="https://police-cop.com/">
@@ -57,23 +58,26 @@ body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--mono);fo
 .holes.left{border-right:1px dashed var(--perf)}
 .holes.right{border-left:1px dashed var(--perf)}
 #strip{position:relative;container-type:inline-size;padding:0 var(--pad);min-width:0}
-.blk{position:relative;padding:calc(var(--lh)*3) 0 calc(var(--lh)*4);line-height:var(--lh);white-space:pre-wrap;cursor:default}
+.blk{position:relative;padding:calc(var(--lh)*3) 0 calc(var(--lh)*4);line-height:var(--lh);cursor:default}
 .blk.poem,.blk.section,.blk.cover{cursor:pointer}
 .perf{position:absolute;top:0;left:0;right:0;height:0;border:0;margin:0}
 .unfed{height:0;padding:0;overflow:hidden}
 .perf::before{content:"";position:absolute;left:calc(-1 * (var(--pad) + var(--holes)));right:calc(-1 * (var(--pad) + var(--holes)));border-top:1px dashed var(--perf)}
-.r{display:block;min-height:var(--lh);padding-left:3ch;text-indent:-3ch}
+/* rows carry white-space so the newlines between them in the source stay invisible */
+.r{display:block;min-height:var(--lh);padding-left:3ch;text-indent:-3ch;white-space:pre-wrap}
+.banner .r,.fit .r,.toc .r,.art .r,.loop .rr{white-space:pre}
 .u{color:transparent}
 .w{opacity:.45}
 .it{font-style:italic}
 h1.r,h2.r,h2,h1{margin:0;font-size:inherit;font-weight:700}
-.banner{white-space:pre;width:fit-content;max-width:100%;margin:0 auto;color:var(--ribbon);line-height:1.15;font-size:min(1.05rem,calc(100cqi / (var(--cols) * .6)))}
+h3.r{margin:0;font-size:inherit}
+.banner{width:fit-content;max-width:100%;margin:0 auto;color:var(--ribbon);line-height:1.15;font-size:min(1.05rem,calc(100cqi / (var(--cols) * .6)))}
 .banner .r{min-height:0;padding:0;text-indent:0}
 .banner.big{font-size:min(1.25rem,calc(100cqi / (var(--cols) * .6)))}
-.fit{white-space:pre;font-size:min(1rem,calc(100cqi / (var(--cols) * .6)))}
+.fit{font-size:min(1rem,calc(100cqi / (var(--cols) * .6)))}
 .fit .r,.toc .r,.center .r{padding:0;text-indent:0}
 .center{text-align:center}
-.toc{white-space:pre;font-size:min(1rem,calc(100cqi / (var(--cols) * .6)))}
+.toc{font-size:min(1rem,calc(100cqi / (var(--cols) * .6)))}
 .toc a{color:inherit;text-decoration:none}
 .toc a:hover{background:var(--ink);color:var(--paper)}
 .toc a:hover .u{color:transparent}
@@ -81,9 +85,9 @@ h1.r,h2.r,h2,h1{margin:0;font-size:inherit;font-weight:700}
 .toc a.sec:first-child{margin-top:0}
 a:focus-visible,button:focus-visible{outline:2px solid var(--ribbon);outline-offset:2px}
 .cover{margin:0 auto;width:fit-content;max-width:100%}
-.art{white-space:pre;font-size:min(.8rem,calc(100cqi / (var(--cols) * .6)));line-height:1.12;letter-spacing:0}
+.art{font-size:min(.8rem,calc(100cqi / (var(--cols) * .6)));line-height:1.12;letter-spacing:0}
 .art .r{min-height:0;padding:0;text-indent:0}
-.loop{position:relative;white-space:pre;font-size:min(1rem,calc(100cqi / (var(--cols) * .6)));line-height:var(--lh);cursor:pointer;min-height:calc(var(--lh)*14)}
+.loop{position:relative;font-size:min(1rem,calc(100cqi / (var(--cols) * .6)));line-height:var(--lh);cursor:pointer;min-height:calc(var(--lh)*14)}
 .loop .rr{display:block;height:var(--lh)}
 .lhead{position:absolute;left:0;top:0;width:1.4ch;height:calc(var(--lh) * .95);border:1px solid var(--ink);opacity:.8;
   background:repeating-linear-gradient(to bottom,var(--ink) 0 1px,transparent 1px 3px);pointer-events:none;display:none}
@@ -104,6 +108,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ribbon);outline-off
   background:var(--desk);display:flex;justify-content:center;gap:clamp(.25rem,3vw,2rem);border-top:1px dashed var(--perf);z-index:2}
 .nav button,.nav a{font:inherit;background:none;border:0;color:var(--ink);text-decoration:none;padding:.35rem .4rem;cursor:pointer;white-space:pre}
 .nav button:hover,.nav a:hover{background:var(--ink);color:var(--desk)}
+.booting .blk{visibility:hidden} /* until the printer has blanked the paper */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:30rem){ :root{--lh:1.6rem;--holes:1.1rem} body{font-size:.94rem} .feed{padding-inline:.35rem}
   .nav{gap:0;flex-wrap:wrap} .nav button,.nav a{padding:.4rem .15rem;font-size:.75rem}
@@ -114,8 +119,1856 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ribbon);outline-off
 <main class="feed">
   <div class="sheet">
     <div class="holes left" aria-hidden="true"></div>
-    <div id="strip"><div class="rail" aria-hidden="true"></div><div class="phead" aria-hidden="true"></div>
-      <noscript><p style="padding:calc(var(--lh)*3) 0;line-height:var(--lh)">Police Cop is a book of poems by Danny Collier. This edition prints itself with JavaScript, which is turned off in your browser.</p></noscript>
+    <div id="strip">
+<div class="rail" aria-hidden="true"></div><div class="phead" aria-hidden="true"></div>
+<section class="blk cover" id="cover">
+  <figure class="cover" role="img" aria-label="Cover: Police Cop, drawn in ASCII characters">
+    <div class="art" style="--cols:112" aria-hidden="true">
+      <span class="r" data-speed="14">                             ===+**###############***************+++*</span>
+      <span class="r" data-speed="14">                           ::=+#####################*********.:+*++++-</span>
+      <span class="r" data-speed="14">                         ::=*#%%####################*********-:==++*++=+</span>
+      <span class="r" data-speed="14">                       ::-+#%%%###################**********+****+++++++=-</span>
+      <span class="r" data-speed="14">                     -::=*%%%##########%%#########***********+++++++=+++++-</span>
+      <span class="r" data-speed="14">                   +:::+#%%######%#%%####%%####************++++++++++++++++==</span>
+      <span class="r" data-speed="14">                 :=-.-*#%#######%%%%%%%%#%%%%%###********++++++++++++++++++++-</span>
+      <span class="r" data-speed="14">                -:  -*########%%%###%%%%%###*+=*+++******++++++++++++++++=++++-</span>
+      <span class="r" data-speed="14">                -   -############%%%%%%%%%%%%##*******+++++++++++++++++++==++++-</span>
+      <span class="r" data-speed="14">               +: .=###########%%%%%%######*#%%%*****+++++++++++++++++++++===+++:</span>
+      <span class="r" data-speed="14">               : .*###########%%%%%%*###*#**##*%*++++++++++++++++++++====++===+=+:</span>
+      <span class="r" data-speed="14">              . .*###########%%%%%%*#%%%#####*%#++++++++++++++++++++++===+======+=</span>
+      <span class="r" data-speed="14">             :. +############%%%%%%#####+*%%%##++++++++++++++++++++=======-=======:</span>
+      <span class="r" data-speed="14">             : -##############%%%%%%%##%%%%%%##++++++++++++++++=-+==+==============:</span>
+      <span class="r" data-speed="14">            -:.*%#############%%%%#%%%%%%***+%%+++++++++++++++=+++=================-</span>
+      <span class="r" data-speed="14">            - -################%##%%######*++*++++++++++++++++++===================-</span>
+      <span class="r" data-speed="14">           *: *%####################%###*++++++++++++++++++++++=====================- @</span>
+      <span class="r" data-speed="14">           :.:#%######################***##*******++++++============================+-</span>
+      <span class="r" data-speed="14">           ..+#################%%%%%%%%%%%%%%%%%%%%%%%%%%%##%%##***+++================</span>
+      <span class="r" data-speed="14">           .:*#########%%@@@%%%#*+###%%%%%%%%#%%%#######**+====++++****##**#***+=====-</span>
+      <span class="r" data-speed="14">           .-%%@%%%%%%#*+ :##%%%%%%%%%%%%%%%%##########%#%%%%%##********%#+=%%%@=====-</span>
+      <span class="r" data-speed="14">           :+#-  +%####%@%%%%%%########%%%%%%%%%%%%%%%%%##+=-:..::=+****#+*=#%%--====-</span>
+      <span class="r" data-speed="14">          --  :#%%%%%%%%###%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@%%%##**-=+%%--=====-</span>
+      <span class="r" data-speed="14">          ..%@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@%@#--=======-</span>
+      <span class="r" data-speed="14">          :*%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+-==========</span>
+      <span class="r" data-speed="14">          *##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%###--====-=====</span>
+      <span class="r" data-speed="14">         =#=%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#**#%=-========-</span>
+      <span class="r" data-speed="14">          ++:*#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@%###%%####-===-====-</span>
+      <span class="r" data-speed="14">           +- -+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#####%%%%%##**#%%%%%%%##*-==-===--</span>
+      <span class="r" data-speed="14">           +++-*%%%%%%%%%%%%%%%%%######****###******++*++*+++++++++#%%%%%%%#*%=-----+#+</span>
+      <span class="r" data-speed="14">           =+++*%%%%%%%%%%%%%%%%%###******###*******###*#*******+++#%%%%%%%%##*--=#%##=</span>
+      <span class="r" data-speed="14">           ==*%%%%%%%%%%%%%%%#########****######%%%##%######******+*%%%%%%%%#*#######*=</span>
+      <span class="r" data-speed="14">           ++%%%%%%%%%%#######*++**#*#******###*=+####*#%##*###***+*%%%%%%%%%*##*##*##+@</span>
+      <span class="r" data-speed="14">           :=%%%%%%%%%%######%%%%#%%%%%#+**#*############%*#####**+*%%%%%%%%%#*#*##+##+</span>
+      <span class="r" data-speed="14">            *%#%%%%%%%##%%%#####%%%%%##%+**###%%%%**#####%##%####***#%%%%%%%%*####=##+</span>
+      <span class="r" data-speed="14">            *%#%%%%%%#%%###%%%#%%%%%%%%%*#**##**+*%%####%%%#+**##+++#%%%%%%%%**###=##+</span>
+      <span class="r" data-speed="14">            *%#%%%%%%*%#####%%%%%####**#*#*+##****%%%%%##%%######*++*%%%%%%%%#*###%#*+</span>
+      <span class="r" data-speed="14">            *%##%%%%##%######%%%###**#**%%#*+##%%@%##***##=*######+++#%%%%%%%**#####*+</span>
+      <span class="r" data-speed="14">            *###%%%%%##%%####%%%%%%#%###%##*+*#%*=*##%%##%%#######+*+*%%%%%%%**#####+*</span>
+      <span class="r" data-speed="14">            @*%*%%%%%%*###**#*###%%%##%%%##**++*%@%%%%%%%%%##%##%*+++*%%%%%%%*##%##*=@</span>
+      <span class="r" data-speed="14">            +@###%%%%%##%%#*#%%%%###*#%%%##***++*#%%%%%#%%%######+++++%%%%%%%*#%###*-</span>
+      <span class="r" data-speed="14">              *%*%%%%%%%##%%##%%%%%##%%%##***++*++*#%%%##%%#####++++++%%%%%%#*##%#-=</span>
+      <span class="r" data-speed="14">              @*##%%%%%%%#####%#+#%%%#%%%#****+*+++++*#%%#*###*++++++*%%%%%%#*#%.#.+</span>
+      <span class="r" data-speed="14">               @#*#%%%%%%##############%%#*****++++****+++++++++++++**%%%%%%#*#=*-+*</span>
+      <span class="r" data-speed="14">               -%#*%%%%%%%#############%%#*****#*+++*******+++++++++*+%%%%%%#####+@#@</span>
+      <span class="r" data-speed="14">               @*%*#%%%%%%############%%#**+++++**+*****++++++++++++*+#%%%%%*###%@%%*</span>
+      <span class="r" data-speed="14">                 *%#%%%%%%%#############*+++**##+++*****++++++++++++*+*%%%%%##%@%%%%*</span>
+      <span class="r" data-speed="14">                 @##%%%%%%%#############%#*************+++++++++++++++*%%%%%##%%%%%%#+</span>
+      <span class="r" data-speed="14">                  ###%%%%%%%##########%%%#*+++*********++++++++++++***#%%%%%#%%%%%%%%=</span>
+      <span class="r" data-speed="14">                  *#%%%%%%%##########%%###*************+++++++++*****#%%%%%%%%%%%%%%#*@</span>
+      <span class="r" data-speed="14">                  **%%%%%%%%#######%%%%#%#**#**********++++++****####%%%%%%%%%%%%%%%*#=</span>
+      <span class="r" data-speed="14">                =#%%%%%%%%%%#######%#%####*#***+++++++*++*****####%%%%%%%%%%%%%%%%%%==</span>
+      <span class="r" data-speed="14">             #+*%%%%%%%%%%%%%##########**#*****************#####%%%%%%%%%%%%%%%%%%%+@</span>
+      <span class="r" data-speed="14">           =*#%%%%%%%%%%%%%%%%######*#%%%%#####******###*#####%%%%%%%%%%%%%%%%%%%%#=</span>
+      <span class="r" data-speed="14">         +*%%%%%%%%%%%%%%%%%%%%##########*******+******#####%%%%%%%%%%%%%%%%%%%%%#*=</span>
+      <span class="r" data-speed="14">       +*%%%%%%%%%%%%%%%%%%%%%%%##########*************###%%%%%%%%%%%%%%%%%%%%%%#*=</span>
+      <span class="r" data-speed="14">     +*%%%%%%%%%%%%%%%%%%%%%%%%%%#%##########***********##%%%%%%%%%%%%%%%%%%%%#####+</span>
+      <span class="r" data-speed="14">    +#%%%%%%%%%%%%%%%%%%%%%%%%%%%%#############*********##%%%%%%%%%%%%#%%%%%%#####%#+=</span>
+      <span class="r" data-speed="14">  +*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#####%%####***********##%%%%%%%%%%%%%%%%%####%%%%%##**++==</span>
+      <span class="r" data-speed="14">#*#%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%####%##**************#%%%%%%%%%%%%%%%%%######%%%%######%#+-</span>
+      <span class="r" data-speed="14">#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%####*******+++++**#%%%%%%%%%%%%%%%%%#####%##%%##%##%=.*##+=</span>
+      <span class="r" data-speed="14">##%%%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##********++*+**%%%%%%%%%%%%%%%%%%#####%%##%%%##%%%%%#####+-</span>
+      <span class="r" data-speed="14">%%#%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#**+****+*##%%%%%%%%%%%%%%%%%%%%####%%%##%%%%%############+-@</span>
+      <span class="r" data-speed="14">%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@%%%%%%%%%%%%%%%%%%%%%%###%%%##%%%%%%%%%###########+:</span>
+      <span class="r" data-speed="14">#######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%###%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##%%%%#%%%%%%%%%%%%%##########=</span>
+      <span class="r" data-speed="14">##%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%%%%%#%%%%%%%%%%%%%%%#########+.</span>
+      <span class="r" data-speed="14">#######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%%%%###%%%####%%%%%%%%%%%%%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%#########+=-:</span>
+      <span class="r" data-speed="14">#%#%%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%########%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@%%%%%%####*#**-</span>
+      <span class="r" data-speed="14">#%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##########%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#*#######%%%%%%%%#*</span>
+      <span class="r" data-speed="14">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#######%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##%%%%%%%%%%###%%</span>
+      <span class="r" data-speed="14">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%####%</span>
+    </div>
+  </figure>
+  <h1 class="sr">Police Cop, by Danny Collier</h1>
+  <div class="banner big" style="--cols:46;margin-top:calc(var(--lh)*2)" aria-hidden="true">
+    <span class="r" data-speed="3"> ____       _ _             ____</span>
+    <span class="r" data-speed="3">|  _ \ ___ | (_) ___ ___   / ___|___  _ __</span>
+    <span class="r" data-speed="3">| |_) / _ \| | |/ __/ _ \ | |   / _ \| '_ \</span>
+    <span class="r" data-speed="3">|  __/ (_) | | | (_|  __/ | |__| (_) | |_) |</span>
+    <span class="r" data-speed="3">|_|   \___/|_|_|\___\___|  \____\___/| .__/</span>
+    <span class="r" data-speed="3">                                     |_|</span>
+  </div>
+  <div class="center" aria-hidden="true">
+    <span class="r"></span>
+    <span class="r">by Danny Collier</span>
+  </div>
+</section>
+<section class="blk dedication" id="dedication">
+  <hr class="perf">
+  <div style="padding-left:min(12ch,15cqi)">
+    <span class="r it">For Bryan Hodges,</span>
+    <span class="r it">who first invented and then</span>
+    <span class="r it">forgot Police Cop.</span>
+  </div>
+</section>
+<section class="blk contents" id="contents" data-speed="3">
+  <hr class="perf">
+  <h2 class="r">Contents</h2>
+  <span class="r"></span>
+  <nav class="toc" style="--cols:33" aria-label="Contents">
+    <a class="r sec" href="#police-cop-and-the-kids">Police Cop and The Kids</a>
+    <a class="r" href="#meet-police-cop">  Meet Police Cop</a>
+    <a class="r" href="#on-propriety">  On Propriety</a>
+    <a class="r" href="#on-architecture">  On Architecture</a>
+    <a class="r" href="#on-ceezy">  On Ceezy</a>
+    <a class="r" href="#on-velocity">  On Velocity</a>
+    <a class="r" href="#meet-the-kids">  Meet The Kids</a>
+    <a class="r" href="#on-forecasting">  On Forecasting</a>
+    <a class="r" href="#on-making-distinctions">  On Making Distinctions</a>
+    <a class="r" href="#ontology">  Ontology</a>
+    <a class="r" href="#on-procedure">  On Procedure</a>
+    <a class="r" href="#on-secret-wars">  On Secret Wars</a>
+    <a class="r" href="#on-literature">  On Literature</a>
+    <a class="r" href="#on-degrees-of-scale">  On Degrees of Scale</a>
+    <a class="r" href="#on-responsibility">  On Responsibility</a>
+    <a class="r" href="#on-youth-culture">  On Youth Culture</a>
+    <a class="r" href="#in-haiku">  In Haiku</a>
+    <a class="r sec" href="#sanity-and-momentum">Sanity and Momentum</a>
+    <a class="r" href="#on-sanity">  On Sanity</a>
+    <a class="r" href="#on-linguistics">  On Linguistics</a>
+    <a class="r" href="#on-the-color-wheel">  On the Color Wheel</a>
+    <a class="r" href="#on-crying-out-in-need">  On Crying Out In Need</a>
+    <a class="r" href="#on-the-nature-of-being">  On the Nature of Being</a>
+    <a class="r" href="#on-the-metro">  On the Metro</a>
+    <a class="r" href="#on-momentum">  On Momentum</a>
+    <a class="r" href="#on-giving-a-fuck">  On Giving A Fuck</a>
+    <a class="r" href="#on-broadway">  On Broadway</a>
+    <a class="r" href="#on-meaning">  On Meaning</a>
+    <a class="r" href="#on-fan-fiction">  On Fan Fiction</a>
+    <a class="r" href="#on-locomotion">  On Locomotion</a>
+    <a class="r" href="#on-parts">  On Parts</a>
+    <a class="r" href="#on-a-bakers-half-dozen">  On A Baker's Half-Dozen</a>
+    <a class="r" href="#on-vaginas">  On Vaginas</a>
+    <a class="r" href="#on-consistency">  On Consistency</a>
+    <a class="r" href="#on-antics">  On Antics</a>
+    <a class="r" href="#on-specificity">  On Specificity</a>
+    <a class="r" href="#on-amateur-night">  On Amateur Night</a>
+    <a class="r" href="#on-the-value-of-small-gestures">  On the Value of Small Gestures</a>
+    <a class="r" href="#on-the-endless-bmx">  On the Endless BMX</a>
+    <a class="r sec" href="#caring-and-corpses">Caring and Corpses</a>
+    <a class="r" href="#on-caring">  On Caring</a>
+    <a class="r" href="#on-narcotics">  On Narcotics</a>
+    <a class="r" href="#on-prosody">  On Prosody</a>
+    <a class="r" href="#on-legislation">  On Legislation</a>
+    <a class="r" href="#on-hopeless-causes">  On Hopeless Causes</a>
+    <a class="r" href="#on-industry">  On Industry</a>
+    <a class="r" href="#on-corpses">  On Corpses</a>
+    <a class="r" href="#on-advertising">  On Advertising</a>
+    <a class="r" href="#yay-hurray">  Yay! Hurray!</a>
+    <a class="r" href="#on-patterns">  On Patterns</a>
+    <a class="r" href="#on-beauty">  On Beauty</a>
+    <a class="r" href="#on-being-prepared">  On Being Prepared</a>
+    <a class="r" href="#on-waking-up">  On Waking Up</a>
+    <a class="r" href="#on-the-playground">  On the Playground</a>
+    <a class="r" href="#on-warnings">  On Warnings</a>
+    <a class="r" href="#on-haiku">  On Haiku</a>
+    <a class="r" href="#on-dissemblances">  On Dissemblances</a>
+    <a class="r" href="#on-evidence">  On Evidence</a>
+    <a class="r" href="#on-mystery">  On Mystery</a>
+    <a class="r" href="#honors">  Honors</a>
+    <a class="r" href="#on-selling-out">  On Selling Out</a>
+    <a class="r" href="#on-empathy">  On Empathy</a>
+    <a class="r" href="#on-being-left-behind">  On Being Left Behind</a>
+    <a class="r" href="#frank-long-dead-says">  Frank, Long Dead, Says</a>
+    <a class="r sec" href="#change-and-eternity">Change and Eternity</a>
+    <a class="r" href="#on-change">  On Change</a>
+    <a class="r" href="#on-getting-around">  On Getting Around</a>
+    <a class="r" href="#on-police-cops-beat">  On Police Cop's Beat</a>
+    <a class="r" href="#on-faith">  On Faith</a>
+    <a class="r" href="#on-record">  On Record</a>
+    <a class="r" href="#on-fallacies">  On Fallacies</a>
+    <a class="r" href="#on-pop-music">  On Pop Music</a>
+    <a class="r" href="#on-origins">  On Origins</a>
+    <a class="r" href="#on-righteousness">  On Righteousness</a>
+    <a class="r" href="#on-resemblances">  On Resemblances</a>
+    <a class="r" href="#on-eternity">  On Eternity</a>
+    <a class="r" href="#on-manifestations">  On Manifestations</a>
+    <a class="r" href="#on-crossing-over">  On Crossing Over</a>
+    <a class="r" href="#on-fitness">  On Fitness</a>
+    <a class="r" href="#on-on-and-on">  On On and On</a>
+    <a class="r" href="#on-enough-being-enough">  On Enough Being Enough</a>
+    <a class="r" href="#on-falling-from-on-high">  On Falling From On High</a>
+    <a class="r" href="#on-sequences">  On Sequences</a>
+    <a class="r" href="#on-surveillance">  On Surveillance</a>
+    <a class="r" href="#on-recursion">  On Recursion</a>
+  </nav>
+</section>
+<section class="blk section" id="police-cop-and-the-kids" data-speed="1.5">
+  <hr class="perf">
+  <h2 class="sr">Police Cop and The Kids</h2>
+  <div class="banner" style="--cols:22" aria-hidden="true">
+    <span class="r"> ___     _ _</span>
+    <span class="r">| _ \___| (_)__ ___</span>
+    <span class="r">|  _/ _ \ | / _/ -_)</span>
+    <span class="r">|_| \___/_|_\__\___|</span>
+    <span class="r">    ___</span>
+    <span class="r">   / __|___ _ __</span>
+    <span class="r">  | (__/ _ \ '_ \</span>
+    <span class="r">   \___\___/ .__/</span>
+    <span class="r">           |_|</span>
+    <span class="r">                _</span>
+    <span class="r">   __ _ _ _  __| |</span>
+    <span class="r">  / _` | ' \/ _` |</span>
+    <span class="r">  \__,_|_||_\__,_|</span>
+    <span class="r">   _____ _</span>
+    <span class="r">  |_   _| |_  ___</span>
+    <span class="r">    | | | ' \/ -_)</span>
+    <span class="r">    |_| |_||_\___|</span>
+    <span class="r">   _  ___    _</span>
+    <span class="r">  | |/ (_)__| |___</span>
+    <span class="r">  | ' &lt;| / _` (_-&lt;</span>
+    <span class="r">  |_|\_\_\__,_/__/</span>
+  </div>
+</section>
+<section class="blk poem" id="meet-police-cop">
+  <hr class="perf">
+  <h3 class="r">Meet Police Cop</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop</span>
+    <span class="r">pulls his gun,</span>
+    <span class="r"></span>
+    <span class="r">strokes his taser,</span>
+    <span class="r">flips his baton,</span>
+    <span class="r"></span>
+    <span class="r">tilts his pelvis,</span>
+    <span class="r">drops his shoulder,</span>
+    <span class="r"></span>
+    <span class="r">chimes his cuffs.</span>
+    <span class="r">It's a shame</span>
+    <span class="r"></span>
+    <span class="r">how these days</span>
+    <span class="r">nobody</span>
+    <span class="r"></span>
+    <span class="r">can understand</span>
+    <span class="r">the elegant</span>
+    <span class="r"></span>
+    <span class="r">language of</span>
+    <span class="r">semaphore.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-propriety">
+  <hr class="perf">
+  <h3 class="r">On Propriety</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop's absence</span>
+    <span class="r">from love poems</span>
+    <span class="r">does not constitute</span>
+    <span class="r">a precinct rule.</span>
+    <span class="r"></span>
+    <span class="r">While the Captain</span>
+    <span class="r">kisses the chief</span>
+    <span class="r">in her office,</span>
+    <span class="r">their profiles shadowed</span>
+    <span class="r">by privacy glass,</span>
+    <span class="r"></span>
+    <span class="r">Police Cop stands</span>
+    <span class="r">near a crossroads,</span>
+    <span class="r">likewise in shadow,</span>
+    <span class="r">alert for a perp.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-architecture">
+  <hr class="perf">
+  <h3 class="r">On Architecture</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop likes</span>
+    <span class="r">the square buildings</span>
+    <span class="r"></span>
+    <span class="r">that stand on stilts,</span>
+    <span class="r">leaving spaces</span>
+    <span class="r"></span>
+    <span class="r">in which he can</span>
+    <span class="r">find Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-ceezy">
+  <hr class="perf">
+  <h3 class="r">On Ceezy</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Ceezy the Camaro driver</span>
+    <span class="r">paid extra to the Commonwealth</span>
+    <span class="r">that we may know that he or she</span>
+    <span class="r">is, was, and will forever be</span>
+    <span class="r">Ceezy the Camaro driver.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-velocity">
+  <hr class="perf">
+  <h3 class="r">On Velocity</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop flows out</span>
+    <span class="r">through the radar gun's</span>
+    <span class="r">electronic guts,</span>
+    <span class="r"></span>
+    <span class="r">rides its microwaves</span>
+    <span class="r">to the speeding car,</span>
+    <span class="r">from which he reflects</span>
+    <span class="r"></span>
+    <span class="r">upon the shadowed,</span>
+    <span class="r">tall, solitary</span>
+    <span class="r">form of Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="meet-the-kids">
+  <hr class="perf">
+  <h3 class="r">Meet The Kids</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">A geyser of dirt,</span>
+    <span class="r">a hole in the ground,</span>
+    <span class="r">and a pyramid</span>
+    <span class="r">of ejecta. Folks,</span>
+    <span class="r">your neighborhood is</span>
+    <span class="r">infested with kids.</span>
+    <span class="r">Guard your spaghetti.</span>
+    <span class="r">Clear your house of cokes.</span>
+    <span class="r">Watch the kids scatter.</span>
+    <span class="r">Watch them leave one kid</span>
+    <span class="r">standing by himself</span>
+    <span class="r">so he's just a kid</span>
+    <span class="r">for a moment, then</span>
+    <span class="r">he's the kids again.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-forecasting">
+  <hr class="perf">
+  <h3 class="r">On Forecasting</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">In the guise of a cloud, the kids</span>
+    <span class="r">disassemble a car. They have</span>
+    <span class="r">no grasp of commerce. They have no</span>
+    <span class="r">plan. They have only high pressures</span>
+    <span class="r">and depressions, motions to their</span>
+    <span class="r">own winds, and a slight axial</span>
+    <span class="r">spin that's unlikely to take them</span>
+    <span class="r">beyond tropical storm status.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-making-distinctions">
+  <hr class="perf">
+  <h3 class="r">On Making Distinctions</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Some officers take requests,</span>
+    <span class="r">lean you on your car,</span>
+    <span class="r">cuff you while your friends</span>
+    <span class="r">laugh and take pictures.</span>
+    <span class="r">Other officers do not.</span>
+  </div>
+</section>
+<section class="blk poem" id="ontology">
+  <hr class="perf">
+  <h3 class="r">Ontology</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">His helmet says</span>
+    <span class="r">"Police"</span>
+    <span class="r">and his shirt says</span>
+    <span class="r">"Police"</span>
+    <span class="r">and his badge says</span>
+    <span class="r">"Police"</span>
+    <span class="r">but his heart says</span>
+    <span class="r">"Cop"</span>
+  </div>
+</section>
+<section class="blk poem" id="on-procedure">
+  <hr class="perf">
+  <h3 class="r">On Procedure</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop</span>
+    <span class="r">files reports.</span>
+    <span class="r"></span>
+    <span class="r">He fails to</span>
+    <span class="r">file reports.</span>
+    <span class="r"></span>
+    <span class="r">He calls for backup.</span>
+    <span class="r">He forgets to call.</span>
+    <span class="r"></span>
+    <span class="r">At roll call, he finds</span>
+    <span class="r">he isn't naked.</span>
+    <span class="r"></span>
+    <span class="r">It's worse. He wears</span>
+    <span class="r">his uniform</span>
+    <span class="r"></span>
+    <span class="r">but he forgets</span>
+    <span class="r">his mirrored shades.</span>
+    <span class="r"></span>
+    <span class="r">He looks at a world</span>
+    <span class="r">that looks back at him</span>
+    <span class="r"></span>
+    <span class="r">and that's it.</span>
+    <span class="r">That does it.</span>
+    <span class="r"></span>
+    <span class="r">That wakes up</span>
+    <span class="r">Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-secret-wars">
+  <hr class="perf">
+  <h3 class="r">On Secret Wars</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">This off-brand convenience store ignores the Falwells,</span>
+    <span class="r">foregoes the wire circle, stocks its wooden top shelf</span>
+    <span class="r"></span>
+    <span class="r">so kids wrinkle comics, stepping on Spider-Man,</span>
+    <span class="r">Wolverine and the Hulk as they steal Playboy,</span>
+    <span class="r"></span>
+    <span class="r">Penthouse, Hustler and Chic. Falwells would have us take</span>
+    <span class="r">the kids to the woodpile but they're already in</span>
+    <span class="r"></span>
+    <span class="r">the woodpile. It's a great place to hide your comics.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-literature">
+  <hr class="perf">
+  <h3 class="r">On Literature</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop doesn't read novels.</span>
+    <span class="r">He puts them under surveillance.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-degrees-of-scale">
+  <hr class="perf">
+  <h3 class="r">On Degrees of Scale</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">As the kids escape,</span>
+    <span class="r">the theatre floor's</span>
+    <span class="r">soda grip slows them</span>
+    <span class="r">imperceptibly.</span>
+    <span class="r"></span>
+    <span class="r">Meanwhile, to be fair,</span>
+    <span class="r">it slows the older,</span>
+    <span class="r">stronger, angrier</span>
+    <span class="r">pursuing usher</span>
+    <span class="r"></span>
+    <span class="r">to the same degree,</span>
+    <span class="r">imperceptibly.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-responsibility">
+  <hr class="perf">
+  <h3 class="r">On Responsibility</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">When Police Cop rides</span>
+    <span class="r">a motorcycle,</span>
+    <span class="r">that motorcycle</span>
+    <span class="r">knows it's been ridden.</span>
+    <span class="r"></span>
+    <span class="r">That motorcycle</span>
+    <span class="r">feels like sunglasses</span>
+    <span class="r">fell from the heavens</span>
+    <span class="r">to garnish its cool.</span>
+    <span class="r"></span>
+    <span class="r">When Police Cop drives</span>
+    <span class="r">an unmarked cruiser,</span>
+    <span class="r">he drives that cruiser</span>
+    <span class="r">anonymously,</span>
+    <span class="r"></span>
+    <span class="r">such that the cruiser</span>
+    <span class="r">wonders who left it</span>
+    <span class="r">somehow even more</span>
+    <span class="r">unmarked than before.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-youth-culture">
+  <hr class="perf">
+  <h3 class="r">On Youth Culture</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop's face</span>
+    <span class="r">on the young punk's</span>
+    <span class="r">t-shirt. The kids</span>
+    <span class="r">love Police Cop</span>
+    <span class="r">because they can't</span>
+    <span class="r">appropriate</span>
+    <span class="r">him. So they do.</span>
+  </div>
+</section>
+<section class="blk poem" id="in-haiku">
+  <hr class="perf">
+  <h3 class="r">In Haiku</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Lost in a haiku</span>
+    <span class="r">Instead of cherry blossoms</span>
+    <span class="r">You find Police Cop</span>
+  </div>
+</section>
+<section class="blk section" id="sanity-and-momentum" data-speed="1.5">
+  <hr class="perf">
+  <h2 class="sr">Sanity and Momentum</h2>
+  <div class="banner" style="--cols:43" aria-hidden="true">
+    <span class="r">        ___            _ _</span>
+    <span class="r">       / __| __ _ _ _ (_) |_ _  _</span>
+    <span class="r">       \__ \/ _` | ' \| |  _| || |</span>
+    <span class="r">       |___/\__,_|_||_|_|\__|\_, |</span>
+    <span class="r">                             |__/</span>
+    <span class="r">                          _</span>
+    <span class="r">             __ _ _ _  __| |</span>
+    <span class="r">            / _` | ' \/ _` |</span>
+    <span class="r">            \__,_|_||_\__,_|</span>
+    <span class="r"> __  __                   _</span>
+    <span class="r">|  \/  |___ _ __  ___ _ _| |_ _  _ _ __</span>
+    <span class="r">| |\/| / _ \ '  \/ -_) ' \  _| || | '  \</span>
+    <span class="r">|_|  |_\___/_|_|_\___|_||_\__|\_,_|_|_|_|</span>
+  </div>
+</section>
+<section class="blk poem" id="on-sanity">
+  <hr class="perf">
+  <h3 class="r">On Sanity</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">On row house stoops</span>
+    <span class="r">and metro trains,</span>
+    <span class="r"></span>
+    <span class="r">in vacant lots</span>
+    <span class="r">and alleyways,</span>
+    <span class="r"></span>
+    <span class="r">where endings</span>
+    <span class="r">meet endings</span>
+    <span class="r"></span>
+    <span class="r">those who scream</span>
+    <span class="r">at nothing</span>
+    <span class="r"></span>
+    <span class="r">stand and scream</span>
+    <span class="r">at nothing.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-linguistics">
+  <hr class="perf">
+  <h3 class="r">On Linguistics</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">On every single metro car,</span>
+    <span class="r">Police Cop.</span>
+    <span class="r"></span>
+    <span class="r">Yes, on every metro car,</span>
+    <span class="r">Police Cop.</span>
+    <span class="r"></span>
+    <span class="r">Identical and redundant,</span>
+    <span class="r">listening for</span>
+    <span class="r"></span>
+    <span class="r">your telltale regional accent.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-the-color-wheel">
+  <hr class="perf">
+  <h3 class="r">On the Color Wheel</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The woman yelling</span>
+    <span class="r">"Suck my goddamn dick!"</span>
+    <span class="r">at the blue row house</span>
+    <span class="r">will soon be yelling</span>
+    <span class="r">"Suck my goddamn dick!"</span>
+    <span class="r">at the red row house.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-crying-out-in-need">
+  <hr class="perf">
+  <h3 class="r">On Crying Out In Need</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r it">(for Daniil Kharms)</span>
+    <span class="r"></span>
+    <span class="r">The kitten in the tree</span>
+    <span class="r">calls for the old lady.</span>
+    <span class="r">The old lady calls for</span>
+    <span class="r">the kitten in the tree.</span>
+    <span class="r">The kitten in the tree</span>
+    <span class="r">has need of Police Cop;</span>
+    <span class="r">therefore, the old lady</span>
+    <span class="r">has need of Police Cop.</span>
+    <span class="r"></span>
+    <span class="r">It's time for crying out</span>
+    <span class="r">now, crying out in need.</span>
+    <span class="r"></span>
+    <span class="r">So the old lady calls</span>
+    <span class="r">Police Cop. Police Cop</span>
+    <span class="r">hears the lady calling,</span>
+    <span class="r">"Police Cop! Police Cop!</span>
+    <span class="r">Police Cop! Police Cop!"</span>
+    <span class="r">and the kitten mewing,</span>
+    <span class="r">"Old lady! Old lady!</span>
+    <span class="r">Old lady! Old lady!"</span>
+    <span class="r"></span>
+    <span class="r">in the time for crying</span>
+    <span class="r">out, crying out in need.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-the-nature-of-being">
+  <hr class="perf">
+  <h3 class="r">On the Nature of Being</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kid in the blue</span>
+    <span class="r">superhero skirt</span>
+    <span class="r">doesn't know that she's</span>
+    <span class="r">a superhero.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-the-metro">
+  <hr class="perf">
+  <h3 class="r">On the Metro</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids place dead rats</span>
+    <span class="r">on the tracks at night.</span>
+    <span class="r">They give up their sleep</span>
+    <span class="r">so we'll know death's smell</span>
+    <span class="r">when it comes for us.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-momentum">
+  <hr class="perf">
+  <h3 class="r">On Momentum</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The St. Vitus guy</span>
+    <span class="r">takes the metro train.</span>
+    <span class="r"></span>
+    <span class="r">Weekday to weekday,</span>
+    <span class="r">station to station.</span>
+    <span class="r"></span>
+    <span class="r">Even when he's at</span>
+    <span class="r">his destination.</span>
+    <span class="r"></span>
+    <span class="r">Even when the train</span>
+    <span class="r">is not in motion.</span>
+    <span class="r"></span>
+    <span class="r">He dangles from an</span>
+    <span class="r">invisible rope.</span>
+    <span class="r"></span>
+    <span class="r">He dances against</span>
+    <span class="r">deceleration.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-giving-a-fuck">
+  <hr class="perf">
+  <h3 class="r">On Giving A Fuck</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">You start by not giving a fuck</span>
+    <span class="r">and go on that way for awhile.</span>
+    <span class="r">Then you worry you're not sincere.</span>
+    <span class="r">The way you don't give a fuck now</span>
+    <span class="r">seems contrived when you look back on</span>
+    <span class="r">your not giving a fuck canon.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-broadway">
+  <hr class="perf">
+  <h3 class="r">On Broadway</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop gave me a ticket.</span>
+    <span class="r">He handed me a citation.</span>
+    <span class="r">It was like a song.</span>
+    <span class="r">I sang the chorus,</span>
+    <span class="r">sang it like a song</span>
+    <span class="r">pulled from his lyrical pink pad.</span>
+    <span class="r"></span>
+    <span class="r it">The Chorus Goes Here</span>
+    <span class="r"></span>
+    <span class="r">He said I could go on my way.</span>
+    <span class="r">He said, "Be about your business."</span>
+    <span class="r">But my business was</span>
+    <span class="r">him. I was about</span>
+    <span class="r">being like a song</span>
+    <span class="r">pulled from his lyrical pink pad.</span>
+    <span class="r"></span>
+    <span class="r it">The Chorus Also Goes Here</span>
+    <span class="r"></span>
+    <span class="r">Then he climbed into my mirror.</span>
+    <span class="r">He stood and shrank himself away,</span>
+    <span class="r">faded like a song.</span>
+    <span class="r">Both of us faded</span>
+    <span class="r">like songs Police Cop</span>
+    <span class="r">pulled from his lyrical pink pad.</span>
+    <span class="r"></span>
+    <span class="r it">And Here Is The Chorus:</span>
+    <span class="r">If the verse is in first person,</span>
+    <span class="r">the chorus shifts to second.</span>
+    <span class="r">You break the rules,</span>
+    <span class="r">you pay the fine.</span>
+    <span class="r">It's written on your ticket.</span>
+    <span class="r">It's written on your ticket.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-meaning">
+  <hr class="perf">
+  <h3 class="r">On Meaning</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">7-11's ecosystem and</span>
+    <span class="r">its place in the ecosystem writ large.</span>
+    <span class="r">I go there when I don't need anything</span>
+    <span class="r">they're selling. What is it that I need?</span>
+    <span class="r">I need a priest. I need a research grant.</span>
+    <span class="r">I need a crack team of philosophers.</span>
+    <span class="r">I want to find a moral in this place.</span>
+    <span class="r">I have to find a moral in this place.</span>
+    <span class="r">They have those oddly wrinkled sausage rolls.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-fan-fiction">
+  <hr class="perf">
+  <h3 class="r">On Fan Fiction</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop shoots his gun</span>
+    <span class="r">metaphorically.</span>
+    <span class="r"></span>
+    <span class="r">Perps transform into mist</span>
+    <span class="r">cinematically.</span>
+    <span class="r"></span>
+    <span class="r">The orgy progresses</span>
+    <span class="r">systematically</span>
+    <span class="r"></span>
+    <span class="r">in bold combinations</span>
+    <span class="r">of greased Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-locomotion">
+  <hr class="perf">
+  <h3 class="r">On Locomotion</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">He walks in circles</span>
+    <span class="r"></span>
+    <span class="r">outside the station</span>
+    <span class="r">as you board the train</span>
+    <span class="r">and the train departs.</span>
+    <span class="r"></span>
+    <span class="r">He walks in circles</span>
+    <span class="r">at the last station</span>
+    <span class="r">as the train arrives</span>
+    <span class="r">and you disembark.</span>
+    <span class="r"></span>
+    <span class="r">It seems he travels</span>
+    <span class="r">by means of circles</span>
+    <span class="r">instead of by train</span>
+    <span class="r"></span>
+    <span class="r">as some people do.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-parts">
+  <hr class="perf">
+  <h3 class="r">On Parts</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">for Dean Taciuch</span>
+    <span class="r"></span>
+    <span class="r">A hooker with a heart of gold.</span>
+    <span class="r">What's that all about? I once met</span>
+    <span class="r">a cook with a kidney of quartz,</span>
+    <span class="r"></span>
+    <span class="r">a short order cook.</span>
+    <span class="r">He made eggs for me.</span>
+    <span class="r">He kept perfect time.</span>
+    <span class="r"></span>
+    <span class="r">Lots of people have meat organs.</span>
+    <span class="r">They don't talk about it but it's</span>
+    <span class="r">all you need to know about them.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-a-bakers-half-dozen">
+  <hr class="perf">
+  <h3 class="r">On A Baker's Half-Dozen</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop gets the donut jokes.</span>
+    <span class="r">He doesn't mind the donut jokes.</span>
+    <span class="r"></span>
+    <span class="r">He knows he's like the donut hole</span>
+    <span class="r">at the center of the donut,</span>
+    <span class="r"></span>
+    <span class="r">ever-present in the donut,</span>
+    <span class="r">a component of the donut</span>
+    <span class="r"></span>
+    <span class="r">that makes the donut a donut</span>
+    <span class="r">by its absence from the donut.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-vaginas">
+  <hr class="perf">
+  <h3 class="r">On Vaginas</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The schizophrenic</span>
+    <span class="r">screaming in your face</span>
+    <span class="r">about vaginas</span>
+    <span class="r">has a lot to say</span>
+    <span class="r">about vaginas.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-consistency">
+  <hr class="perf">
+  <h3 class="r">On Consistency</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Hanging out his window,</span>
+    <span class="r">all day, every day,</span>
+    <span class="r">the young man says "kiss me"</span>
+    <span class="r">to no one, in Spanish.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-antics">
+  <hr class="perf">
+  <h3 class="r">On Antics</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids pass easily</span>
+    <span class="r">among the counted</span>
+    <span class="r"></span>
+    <span class="r">syllables and ignore</span>
+    <span class="r">arbitrary line breaks.</span>
+    <span class="r"></span>
+    <span class="r">They speak-a the English.</span>
+    <span class="r">They know grammar is just</span>
+    <span class="r"></span>
+    <span class="r">a nut punch among friends.</span>
+    <span class="r">They know logic is just</span>
+    <span class="r"></span>
+    <span class="r">another wet willie</span>
+    <span class="r">and to draw conclusions</span>
+    <span class="r"></span>
+    <span class="r">is to drop your trousers</span>
+    <span class="r">and bend at the middle.</span>
+    <span class="r"></span>
+    <span class="r">They know all this mooning</span>
+    <span class="r">doesn't lead anywhere.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-specificity">
+  <hr class="perf">
+  <h3 class="r">On Specificity</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Just before the</span>
+    <span class="r">apocalypse,</span>
+    <span class="r"></span>
+    <span class="r">not the final</span>
+    <span class="r">apocalypse,</span>
+    <span class="r"></span>
+    <span class="r">the most recent</span>
+    <span class="r">apocalypse,</span>
+    <span class="r"></span>
+    <span class="r">the interim,</span>
+    <span class="r">forgettable,</span>
+    <span class="r"></span>
+    <span class="r">no consequence</span>
+    <span class="r">apocalypse,</span>
+    <span class="r"></span>
+    <span class="r">a young woman,</span>
+    <span class="r">beautiful and</span>
+    <span class="r"></span>
+    <span class="r">off her meds,</span>
+    <span class="r">rose to preach</span>
+    <span class="r"></span>
+    <span class="r">"And Jesus! Not</span>
+    <span class="r">God, not Christ! But</span>
+    <span class="r"></span>
+    <span class="r">Jesus! Baby</span>
+    <span class="r">Jesus!" to the</span>
+    <span class="r"></span>
+    <span class="r">last commuter</span>
+    <span class="r">in the last car.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-amateur-night">
+  <hr class="perf">
+  <h3 class="r">On Amateur Night</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">On amateur night</span>
+    <span class="r">Police Cop's routine</span>
+    <span class="r">doesn't ever change.</span>
+    <span class="r"></span>
+    <span class="r">He waits for his turn</span>
+    <span class="r">on amateur night</span>
+    <span class="r">then walks to the mic.</span>
+    <span class="r"></span>
+    <span class="r">He stares at the crowd</span>
+    <span class="r">and the crowd stares back</span>
+    <span class="r">on amateur night.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-the-value-of-small-gestures">
+  <hr class="perf">
+  <h3 class="r">On the Value of Small Gestures</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">He took a shit</span>
+    <span class="r">on the corner.</span>
+    <span class="r"></span>
+    <span class="r">They put that shit</span>
+    <span class="r">on Google Earth.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-the-endless-bmx">
+  <hr class="perf">
+  <h3 class="r">On the Endless BMX</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The subatomic lattice</span>
+    <span class="r">of bike-riding kids,</span>
+    <span class="r">wheel to wheel to wheel,</span>
+    <span class="r">loves you because you</span>
+    <span class="r">are muddy and rutted</span>
+    <span class="r">and theirs to tear up.</span>
+  </div>
+</section>
+<section class="blk section" id="caring-and-corpses" data-speed="1.5">
+  <hr class="perf">
+  <h2 class="sr">Caring and Corpses</h2>
+  <div class="banner" style="--cols:32" aria-hidden="true">
+    <span class="r">   ___          _</span>
+    <span class="r">  / __|__ _ _ _(_)_ _  __ _</span>
+    <span class="r"> | (__/ _` | '_| | ' \/ _` |</span>
+    <span class="r">  \___\__,_|_| |_|_||_\__, |</span>
+    <span class="r">                      |___/</span>
+    <span class="r">                     _</span>
+    <span class="r">        __ _ _ _  __| |</span>
+    <span class="r">       / _` | ' \/ _` |</span>
+    <span class="r">       \__,_|_||_\__,_|</span>
+    <span class="r">  ___</span>
+    <span class="r"> / __|___ _ _ _ __ ___ ___ ___</span>
+    <span class="r">| (__/ _ \ '_| '_ (_-&lt;/ -_|_-&lt;</span>
+    <span class="r"> \___\___/_| | .__/__/\___/__/</span>
+    <span class="r">             |_|</span>
+  </div>
+</section>
+<section class="blk poem" id="on-caring">
+  <hr class="perf">
+  <h3 class="r">On Caring</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids</span>
+    <span class="r">take a long walk</span>
+    <span class="r">off a short, sharp cinquain.</span>
+    <span class="r">It's not that they're careless. They just</span>
+    <span class="r">don't care.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-narcotics">
+  <hr class="perf">
+  <h3 class="r">On Narcotics</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop chooses to ignore</span>
+    <span class="r">the pot you hide in your pocket.</span>
+    <span class="r"></span>
+    <span class="r">But later, when you reach into</span>
+    <span class="r">your pocket, you find your pot, yes,</span>
+    <span class="r"></span>
+    <span class="r">with a pen, a blank journal,</span>
+    <span class="r">and a photo of Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-prosody">
+  <hr class="perf">
+  <h3 class="r">On Prosody</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids are not afraid to rhyme,</span>
+    <span class="r">though rhyme is an old house</span>
+    <span class="r"></span>
+    <span class="r">boarded up and haunted</span>
+    <span class="r">by dead and formless forms.</span>
+    <span class="r"></span>
+    <span class="r">See the kids walk up the path,</span>
+    <span class="r">footsteps like prosody.</span>
+    <span class="r"></span>
+    <span class="r">Watch them knock on the door</span>
+    <span class="r">with their eyes full of crime.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-legislation">
+  <hr class="perf">
+  <h3 class="r">On Legislation</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">You can float</span>
+    <span class="r">a bill to legalize</span>
+    <span class="r"></span>
+    <span class="r">unicorn</span>
+    <span class="r">fucking in Congress but</span>
+    <span class="r"></span>
+    <span class="r">that won't make</span>
+    <span class="r">it law or fill the halls</span>
+    <span class="r"></span>
+    <span class="r">of Congress</span>
+    <span class="r">with horny unicorns.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-hopeless-causes">
+  <hr class="perf">
+  <h3 class="r">On Hopeless Causes</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop responds</span>
+    <span class="r">to a domestic. He drifts</span>
+    <span class="r">non-corporeal</span>
+    <span class="r"></span>
+    <span class="r">through the house's door,</span>
+    <span class="r">through its interior walls,</span>
+    <span class="r">and through the couple,</span>
+    <span class="r"></span>
+    <span class="r">who keep on fighting</span>
+    <span class="r">despite the concerned</span>
+    <span class="r">presence of Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-industry">
+  <hr class="perf">
+  <h3 class="r">On Industry</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids make shivs,</span>
+    <span class="r">show shivs to kids.</span>
+    <span class="r"></span>
+    <span class="r">Those kids make shivs.</span>
+    <span class="r">They compare shivs,</span>
+    <span class="r"></span>
+    <span class="r">trade shivs for shivs,</span>
+    <span class="r">sell shivs to kids,</span>
+    <span class="r"></span>
+    <span class="r">put shivs to work,</span>
+    <span class="r">shiv kids with shivs.</span>
+    <span class="r"></span>
+    <span class="r">The point is, they're</span>
+    <span class="r">industrious,</span>
+    <span class="r"></span>
+    <span class="r">these kids with shivs.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-corpses">
+  <hr class="perf">
+  <h3 class="r">On Corpses</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">We find a body</span>
+    <span class="r">in the morning and again</span>
+    <span class="r">we find a body</span>
+    <span class="r"></span>
+    <span class="r">as the sun goes down</span>
+    <span class="r">on Corpse Town. Did I mention</span>
+    <span class="r">we live in Corpse Town?</span>
+    <span class="r"></span>
+    <span class="r">So many corpses</span>
+    <span class="r">we named our town after them.</span>
+    <span class="r">We could be Gold Rush.</span>
+    <span class="r"></span>
+    <span class="r">We could be Wine Town,</span>
+    <span class="r">Canning, Cedar, Mountaintop,</span>
+    <span class="r">or Poet's Crossing</span>
+    <span class="r"></span>
+    <span class="r">if our most common</span>
+    <span class="r">resource was something besides</span>
+    <span class="r">bodies, lost and found.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-advertising">
+  <hr class="perf">
+  <h3 class="r">On Advertising</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">This car repair shop</span>
+    <span class="r">says,</span>
+    <span class="r">"We fix everything!"</span>
+    <span class="r"></span>
+    <span class="r">That car repair shop</span>
+    <span class="r">says,</span>
+    <span class="r">"Believe in Jesus!"</span>
+    <span class="r"></span>
+    <span class="r">We're lucky to have</span>
+    <span class="r">such</span>
+    <span class="r">fine car repair shops.</span>
+    <span class="r"></span>
+    <span class="r">Our town is quite poor,</span>
+    <span class="r">with</span>
+    <span class="r">many broken cars.</span>
+  </div>
+</section>
+<section class="blk poem" id="yay-hurray">
+  <hr class="perf">
+  <h3 class="r">Yay! Hurray!</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Death as a matter of course.</span>
+    <span class="r">Death as a matter of profit.</span>
+    <span class="r">Death upon death upon death.</span>
+    <span class="r">Are you going to eat your pancake?</span>
+    <span class="r">I would like to eat your pancake.</span>
+    <span class="r">Oh, and death.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-patterns">
+  <hr class="perf">
+  <h3 class="r">On Patterns</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids lie down on yellow lines</span>
+    <span class="r">and circle each other with chalk.</span>
+    <span class="r"></span>
+    <span class="r">As the flow of rush hour traffic</span>
+    <span class="r">draws blurred lines around their outlines,</span>
+    <span class="r"></span>
+    <span class="r">some fat ass bastard</span>
+    <span class="r">whose opinion counts</span>
+    <span class="r"></span>
+    <span class="r">says, "That's not how</span>
+    <span class="r">you play hopscotch."</span>
+  </div>
+</section>
+<section class="blk poem" id="on-beauty">
+  <hr class="perf">
+  <h3 class="r">On Beauty</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop orders</span>
+    <span class="r">an armored car</span>
+    <span class="r"></span>
+    <span class="r">from the motor</span>
+    <span class="r">pool. The motor</span>
+    <span class="r"></span>
+    <span class="r">pool says it's all</span>
+    <span class="r">out of armored</span>
+    <span class="r"></span>
+    <span class="r">cars, which is a</span>
+    <span class="r">lie but it's a</span>
+    <span class="r"></span>
+    <span class="r">beautiful lie,</span>
+    <span class="r">satisfying,</span>
+    <span class="r"></span>
+    <span class="r">satisfying</span>
+    <span class="r">to Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-being-prepared">
+  <hr class="perf">
+  <h3 class="r">On Being Prepared</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop goes flat.</span>
+    <span class="r">The whole world pauses</span>
+    <span class="r"></span>
+    <span class="r">then resumes its spin.</span>
+    <span class="r">Back at the precinct,</span>
+    <span class="r"></span>
+    <span class="r">the needles and dials</span>
+    <span class="r">mark the crime rate's rise</span>
+    <span class="r"></span>
+    <span class="r">until Police Cop,</span>
+    <span class="r">who's always prepared,</span>
+    <span class="r"></span>
+    <span class="r">pops his cruiser's trunk</span>
+    <span class="r">and pulls out flares, a</span>
+    <span class="r"></span>
+    <span class="r">tire iron and</span>
+    <span class="r">a spare Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-waking-up">
+  <hr class="perf">
+  <h3 class="r">On Waking Up</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop</span>
+    <span class="r">feels like you would feel</span>
+    <span class="r">if you found yourself</span>
+    <span class="r">waking up</span>
+    <span class="r">on your feet</span>
+    <span class="r">on a train</span>
+    <span class="r">underground</span>
+    <span class="r">in motion,</span>
+    <span class="r">unaware</span>
+    <span class="r">of how you got there</span>
+    <span class="r">or where you're going</span>
+    <span class="r">or even that you're</span>
+    <span class="r">Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-the-playground">
+  <hr class="perf">
+  <h3 class="r">On the Playground</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop enters the playground,</span>
+    <span class="r">which is a spotlight, a blood dot</span>
+    <span class="r"></span>
+    <span class="r">squashed flat under a microscope,</span>
+    <span class="r">a magic circle drawn in chalk,</span>
+    <span class="r"></span>
+    <span class="r">inside of which he fears he'll be</span>
+    <span class="r">diva, doctor, demon, belly</span>
+    <span class="r"></span>
+    <span class="r">filled up with arrogant wizard,</span>
+    <span class="r">belly filled up with Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-warnings">
+  <hr class="perf">
+  <h3 class="r">On Warnings</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids form a dragon</span>
+    <span class="r">in the southwest corner</span>
+    <span class="r">by the lemon juice rune</span>
+    <span class="r">that warns, "Here there be crime."</span>
+  </div>
+</section>
+<section class="blk poem" id="on-haiku">
+  <hr class="perf">
+  <h3 class="r">On Haiku</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Murder! Murder, then</span>
+    <span class="r">blossoms, grass, branches or snow.</span>
+    <span class="r">Surprise! More murder!</span>
+  </div>
+</section>
+<section class="blk poem" id="on-dissemblances">
+  <hr class="perf">
+  <h3 class="r">On Dissemblances</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop flattens</span>
+    <span class="r">and spreads across the crime scene</span>
+    <span class="r">like oil, bile, or blood.</span>
+    <span class="r"></span>
+    <span class="r">Like oil to soak up</span>
+    <span class="r">the essence of crime and make</span>
+    <span class="r">a justice dressing.</span>
+    <span class="r"></span>
+    <span class="r">Or, if we must be</span>
+    <span class="r">literal when comparing</span>
+    <span class="r">a thing to a thing,</span>
+    <span class="r"></span>
+    <span class="r">like bile to break down</span>
+    <span class="r">crime like ribbons of duck fat.</span>
+    <span class="r">But now we've compared</span>
+    <span class="r"></span>
+    <span class="r">two things to two things</span>
+    <span class="r">and we've killed our haiku lines</span>
+    <span class="r">when our poor haiku</span>
+    <span class="r"></span>
+    <span class="r">just wanted dinner</span>
+    <span class="r">and blood and maybe a last</span>
+    <span class="r">kiss from Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-evidence">
+  <hr class="perf">
+  <h3 class="r">On Evidence</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop leaves</span>
+    <span class="r">coffee cups. He</span>
+    <span class="r"></span>
+    <span class="r">doesn't litter,</span>
+    <span class="r">he doesn't crime,</span>
+    <span class="r"></span>
+    <span class="r">but as he goes</span>
+    <span class="r">he leaves the ghosts</span>
+    <span class="r"></span>
+    <span class="r">of coffee cups,</span>
+    <span class="r">blind styrofoam</span>
+    <span class="r"></span>
+    <span class="r">and aether cups,</span>
+    <span class="r">each containing</span>
+    <span class="r"></span>
+    <span class="r">a little sip</span>
+    <span class="r">of Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-mystery">
+  <hr class="perf">
+  <h3 class="r">On Mystery</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop decides he</span>
+    <span class="r">must solve the mystery.</span>
+    <span class="r"></span>
+    <span class="r">He solves the mystery.</span>
+    <span class="r">Log it in the ledger:</span>
+    <span class="r">another job well done.</span>
+    <span class="r"></span>
+    <span class="r">His methodology,</span>
+    <span class="r">his tools and his sources,</span>
+    <span class="r">his clues and conclusions…</span>
+    <span class="r"></span>
+    <span class="r">What are they? Who are they?</span>
+    <span class="r">What was the mystery?</span>
+    <span class="r">Another mystery!</span>
+    <span class="r"></span>
+    <span class="r">Log it in the ledger.</span>
+    <span class="r">A job for Police Cop!</span>
+  </div>
+</section>
+<section class="blk poem" id="honors">
+  <hr class="perf">
+  <h3 class="r">Honors</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop's most decorated</span>
+    <span class="r">colleague wins another</span>
+    <span class="r">award, another promotion,</span>
+    <span class="r">another raise, and yet</span>
+    <span class="r">another front-page story for</span>
+    <span class="r">being the officer who most</span>
+    <span class="r">resembles Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-selling-out">
+  <hr class="perf">
+  <h3 class="r">On Selling Out</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop won't shill, not even Hostess</span>
+    <span class="r">Fruit Pies that burst with the fruit of justice.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-empathy">
+  <hr class="perf">
+  <h3 class="r">On Empathy</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop greets the dirty cop.</span>
+    <span class="r">His shift ends as Dirty's begins.</span>
+    <span class="r"></span>
+    <span class="r">As he takes off his uniform</span>
+    <span class="r">to put on a fresh uniform</span>
+    <span class="r"></span>
+    <span class="r">over the black and blue and gold-</span>
+    <span class="r">buttoned uniform of his skin,</span>
+    <span class="r"></span>
+    <span class="r">the coyote and the sheep dog</span>
+    <span class="r">in the break room on the TV</span>
+    <span class="r"></span>
+    <span class="r">punch in and out as if to say,</span>
+    <span class="r">"We understand you, Police Cop."</span>
+  </div>
+</section>
+<section class="blk poem" id="on-being-left-behind">
+  <hr class="perf">
+  <h3 class="r">On Being Left Behind</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Then the corpses pull themselves together,</span>
+    <span class="r"></span>
+    <span class="r">rise and nod to one another,</span>
+    <span class="r"></span>
+    <span class="r">put hands in hands and walk away</span>
+    <span class="r"></span>
+    <span class="r">without trumpets, choirs or Jesus,</span>
+    <span class="r"></span>
+    <span class="r">leaving only stains and weapons,</span>
+    <span class="r"></span>
+    <span class="r">chalk outlines and scattered red flags,</span>
+    <span class="r"></span>
+    <span class="r">warnings placed there after the fact,</span>
+    <span class="r"></span>
+    <span class="r">clues for the clueless abandoned by crime.</span>
+  </div>
+</section>
+<section class="blk poem" id="frank-long-dead-says">
+  <hr class="perf">
+  <h3 class="r">Frank, Long Dead, Says</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Certain people demand</span>
+    <span class="r">complicated explanations</span>
+    <span class="r">when in truth they are just</span>
+    <span class="r">not invited to my party.</span>
+  </div>
+</section>
+<section class="blk section" id="change-and-eternity" data-speed="1.5">
+  <hr class="perf">
+  <h2 class="sr">Change and Eternity</h2>
+  <div class="banner" style="--cols:35" aria-hidden="true">
+    <span class="r">   ___ _</span>
+    <span class="r">  / __| |_  __ _ _ _  __ _ ___</span>
+    <span class="r"> | (__| ' \/ _` | ' \/ _` / -_)</span>
+    <span class="r">  \___|_||_\__,_|_||_\__, \___|</span>
+    <span class="r">                     |___/</span>
+    <span class="r">                      _</span>
+    <span class="r">         __ _ _ _  __| |</span>
+    <span class="r">        / _` | ' \/ _` |</span>
+    <span class="r">        \__,_|_||_\__,_|</span>
+    <span class="r"> ___ _                _ _</span>
+    <span class="r">| __| |_ ___ _ _ _ _ (_) |_ _  _</span>
+    <span class="r">| _||  _/ -_) '_| ' \| |  _| || |</span>
+    <span class="r">|___|\__\___|_| |_||_|_|\__|\_, |</span>
+    <span class="r">                            |__/</span>
+  </div>
+</section>
+<section class="blk poem" id="on-change">
+  <hr class="perf">
+  <h3 class="r">On Change</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">You think and think and</span>
+    <span class="r">think about changing.</span>
+    <span class="r"></span>
+    <span class="r">Police Cop can change</span>
+    <span class="r">whenever he wants.</span>
+    <span class="r"></span>
+    <span class="r">Stuck on the highway,</span>
+    <span class="r">stuck on your commute,</span>
+    <span class="r"></span>
+    <span class="r">stuck pondering fate,</span>
+    <span class="r">predestination,</span>
+    <span class="r"></span>
+    <span class="r">and other such rot,</span>
+    <span class="r">you see Police Cop</span>
+    <span class="r"></span>
+    <span class="r">cross the median</span>
+    <span class="r">near the sign that says,</span>
+    <span class="r"></span>
+    <span class="r">"For Official Use."</span>
+  </div>
+</section>
+<section class="blk poem" id="on-getting-around">
+  <hr class="perf">
+  <h3 class="r">On Getting Around</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids ride long boards,</span>
+    <span class="r"></span>
+    <span class="r">skate boards, roller skates,</span>
+    <span class="r"></span>
+    <span class="r">inline skates, scooters,</span>
+    <span class="r"></span>
+    <span class="r">unicycle stilts</span>
+    <span class="r"></span>
+    <span class="r">(one wheel on each stick)</span>
+    <span class="r"></span>
+    <span class="r">then a single stilt</span>
+    <span class="r"></span>
+    <span class="r">with a single wheel,</span>
+    <span class="r"></span>
+    <span class="r">with the kids on top</span>
+    <span class="r"></span>
+    <span class="r">the way angels dance,</span>
+    <span class="r"></span>
+    <span class="r">uncountable and</span>
+    <span class="r"></span>
+    <span class="r">unaccountable.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-police-cops-beat">
+  <hr class="perf">
+  <h3 class="r">On Police Cop's Beat</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">His beat includes the mall.</span>
+    <span class="r">Of course it does.</span>
+    <span class="r">When he walks through the mall,</span>
+    <span class="r">he deforms it.</span>
+    <span class="r"></span>
+    <span class="r">It folds around him, shards</span>
+    <span class="r">to his lodestone,</span>
+    <span class="r">like his mirrored glasses</span>
+    <span class="r">are fundamental,</span>
+    <span class="r"></span>
+    <span class="r">electromagnetic,</span>
+    <span class="r">invisibly</span>
+    <span class="r">touching the shoplifter,</span>
+    <span class="r">swapping flavors</span>
+    <span class="r"></span>
+    <span class="r">in the Baskin Robbins,</span>
+    <span class="r">tapping each parked</span>
+    <span class="r">car on one fogged window</span>
+    <span class="r">then moving on.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-faith">
+  <hr class="perf">
+  <h3 class="r">On Faith</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids swallow gum</span>
+    <span class="r">and hold it inside</span>
+    <span class="r"></span>
+    <span class="r">for seven long years</span>
+    <span class="r">and three shorter years,</span>
+    <span class="r"></span>
+    <span class="r">then they spit it out,</span>
+    <span class="r">salute alchemy,</span>
+    <span class="r"></span>
+    <span class="r">put on witchy hats,</span>
+    <span class="r">fondle prayer beads,</span>
+    <span class="r"></span>
+    <span class="r">invoke ancestors,</span>
+    <span class="r">envision Buddha</span>
+    <span class="r"></span>
+    <span class="r">embracing Jesus</span>
+    <span class="r">with Allah's strong arms,</span>
+    <span class="r"></span>
+    <span class="r">praise the lost cargo,</span>
+    <span class="r">and mould a golem</span>
+    <span class="r"></span>
+    <span class="r">to destroy their foes</span>
+    <span class="r">ecumenically.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-record">
+  <hr class="perf">
+  <h3 class="r">On Record</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r it">For Carmela Ciuraru</span>
+    <span class="r"></span>
+    <span class="r">Police Cop knows all the dumb shit</span>
+    <span class="r">you ever said. He does not care.</span>
+    <span class="r"></span>
+    <span class="r">All the friends you have offended?</span>
+    <span class="r">The ones who wake you up at night?</span>
+    <span class="r"></span>
+    <span class="r">Tell them you have a clean record.</span>
+    <span class="r">Tell them to go to the precinct.</span>
+    <span class="r"></span>
+    <span class="r">Tell them they can get a report</span>
+    <span class="r">on your progress from Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-fallacies">
+  <hr class="perf">
+  <h3 class="r">On Fallacies</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids tell stories</span>
+    <span class="r">around a campfire</span>
+    <span class="r">that doesn't exist</span>
+    <span class="r">except in stories.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-pop-music">
+  <hr class="perf">
+  <h3 class="r">On Pop Music</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop wears his helmet</span>
+    <span class="r">in his cruiser. He Corey</span>
+    <span class="r">Harts, though he would not get that</span>
+    <span class="r">reference. In the eighties,</span>
+    <span class="r">he didn't listen to pop music.</span>
+    <span class="r">He was several thousand</span>
+    <span class="r">years too old for that bullshit.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-origins">
+  <hr class="perf">
+  <h3 class="r">On Origins</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">One theory tells us that</span>
+    <span class="r">the kids exploded from</span>
+    <span class="r">the Earth, which implies that</span>
+    <span class="r">they will leave us some day,</span>
+    <span class="r">expanding forever</span>
+    <span class="r">or collapsing at last.</span>
+    <span class="r">Other theories include</span>
+    <span class="r">divine intervention,</span>
+    <span class="r">malevolent action,</span>
+    <span class="r">consequences of our</span>
+    <span class="r">immoral behavior,</span>
+    <span class="r">a rude spontaneous</span>
+    <span class="r">generation from our</span>
+    <span class="r">discarded soda cans,</span>
+    <span class="r">etcetera, et al,</span>
+    <span class="r">but in truth we don't know</span>
+    <span class="r">and the kids won't tell us.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-righteousness">
+  <hr class="perf">
+  <h3 class="r">On Righteousness</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop enforces the ordinance</span>
+    <span class="r">forbidding all righteous indignation.</span>
+    <span class="r"></span>
+    <span class="r">Despite electronic ticketing and</span>
+    <span class="r">despite his speedy blue helicopter,</span>
+    <span class="r"></span>
+    <span class="r">the indignant persist in indignance,</span>
+    <span class="r">offenses pile up, and perps multiply.</span>
+    <span class="r"></span>
+    <span class="r">Call the mayor. Tell him it's an outrage.</span>
+    <span class="r">The law is the law and that's how things work.</span>
+    <span class="r"></span>
+    <span class="r">Tell the mayor that we won't stand for it.</span>
+    <span class="r">Tell the mayor we need more Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-resemblances">
+  <hr class="perf">
+  <h3 class="r">On Resemblances</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop is not an onion,</span>
+    <span class="r">nor is he like an onion nor</span>
+    <span class="r">is he in fact or in likeness</span>
+    <span class="r">a set of Russian nesting dolls.</span>
+    <span class="r"></span>
+    <span class="r">He's more like a Tootsie Roll Pop</span>
+    <span class="r">held tight by a scholarly owl,</span>
+    <span class="r">at the limits of its patience</span>
+    <span class="r">as it licks and licks Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-eternity">
+  <hr class="perf">
+  <h3 class="r">On Eternity</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop stands forever</span>
+    <span class="r">on that corner you passed</span>
+    <span class="r">in dad's maroon Buick</span>
+    <span class="r">the first time you left home.</span>
+    <span class="r"></span>
+    <span class="r">Start driving. Trust muscle</span>
+    <span class="r">memories. Past the mall</span>
+    <span class="r">that's no longer a mall,</span>
+    <span class="r">the houses where friends lived,</span>
+    <span class="r">all the replaced places</span>
+    <span class="r">placed in their old places.</span>
+    <span class="r"></span>
+    <span class="r">No matter what they say,</span>
+    <span class="r">you can go home again.</span>
+    <span class="r">If you lose your way, just</span>
+    <span class="r">turn left at Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-manifestations">
+  <hr class="perf">
+  <h3 class="r">On Manifestations</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop as a faux coffin</span>
+    <span class="r">in the abandoned gothic hall.</span>
+    <span class="r"></span>
+    <span class="r">Police Cop as a dust devil</span>
+    <span class="r">circling the razed Mall of Murder.</span>
+    <span class="r"></span>
+    <span class="r">Police Cop as a smudge of cells</span>
+    <span class="r">joining origin and end times</span>
+    <span class="r"></span>
+    <span class="r">straddle-legged to clock the demons</span>
+    <span class="r">on their way to buy comic books</span>
+    <span class="r"></span>
+    <span class="r">at the churches they have chosen</span>
+    <span class="r">by intention or omission</span>
+    <span class="r"></span>
+    <span class="r">at the busy intersection</span>
+    <span class="r">of Your Old Friends and Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-crossing-over">
+  <hr class="perf">
+  <h3 class="r">On Crossing Over</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The standalone arcade,</span>
+    <span class="r">the arcade in the mall,</span>
+    <span class="r">the corner store Zaxxon</span>
+    <span class="r">and the Putt Putt game room.</span>
+    <span class="r"></span>
+    <span class="r">The kids can take you there</span>
+    <span class="r">by bicycle ferry</span>
+    <span class="r">if you saved a token</span>
+    <span class="r">to put under your tongue.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-fitness">
+  <hr class="perf">
+  <h3 class="r">On Fitness</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop stands on the left side</span>
+    <span class="r">and on the right side of the globe,</span>
+    <span class="r"></span>
+    <span class="r">a whole world varnished with crystal</span>
+    <span class="r">layers of crime. With his left hand,</span>
+    <span class="r"></span>
+    <span class="r">he grabs Police Cop. With his right,</span>
+    <span class="r">he grabs Police Cop. The world rolls</span>
+    <span class="r"></span>
+    <span class="r">on a spindle of Police Cop</span>
+    <span class="r">as Police Cop crunches his abs.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-on-and-on">
+  <hr class="perf">
+  <h3 class="r">On On and On</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Having once touched disassembly,</span>
+    <span class="r">the kids turn their eyes to the world</span>
+    <span class="r"></span>
+    <span class="r">and they pull the world to pieces</span>
+    <span class="r"></span>
+    <span class="r">and put the pieces in boxes</span>
+    <span class="r">and pull the boxes to pieces</span>
+    <span class="r"></span>
+    <span class="r">and put those pieces in boxes</span>
+    <span class="r">and pull those boxes to pieces.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-enough-being-enough">
+  <hr class="perf">
+  <h3 class="r">On Enough Being Enough</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">The kids are on our property.</span>
+    <span class="r">Our property's inside the kids.</span>
+    <span class="r">They confound the laws of trespass,</span>
+    <span class="r">inverting the order of things.</span>
+    <span class="r"></span>
+    <span class="r">They should respect our property.</span>
+    <span class="r">They should observe biology.</span>
+    <span class="r">They should obey physical laws.</span>
+    <span class="r">They should be particles or waves.</span>
+    <span class="r"></span>
+    <span class="r">Instead, our stuff's covered in kids,</span>
+    <span class="r">surrounded and suffused with kids</span>
+    <span class="r">who confound our laws of trespass,</span>
+    <span class="r">becoming our fences and lands,</span>
+    <span class="r"></span>
+    <span class="r">and judge the way we choose to live</span>
+    <span class="r">inverting the order of things.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-falling-from-on-high">
+  <hr class="perf">
+  <h3 class="r">On Falling From On High</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">Police Cop stands on skyscrapers</span>
+    <span class="r">to calculate a penny's path</span>
+    <span class="r">from boredom through velocity</span>
+    <span class="r">down to negligent homicide.</span>
+    <span class="r"></span>
+    <span class="r">He would melt down every coin</span>
+    <span class="r">and beat the lumps to plowshares</span>
+    <span class="r">if he caught pennies in the act</span>
+    <span class="r">or if nickels fit the profile.</span>
+    <span class="r"></span>
+    <span class="r">He would dance our cares to nothing</span>
+    <span class="r">if the public built a dance hall</span>
+    <span class="r">with spinning disco penny lights</span>
+    <span class="r">and space for his skyscraper shoes.</span>
+    <span class="r"></span>
+    <span class="r">Until then, he just does the math:</span>
+    <span class="r">pennies per second per second,</span>
+    <span class="r">perfect boredom falling in space,</span>
+    <span class="r">E = MC Police Cop.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-sequences">
+  <hr class="perf">
+  <h3 class="r">On Sequences</h3>
+  <span class="r"></span>
+  <div>
+    <span class="r">First the kids graffiti a bridge</span>
+    <span class="r"></span>
+    <span class="r">then they do a lifetime of stuff,</span>
+    <span class="r"></span>
+    <span class="r">the stuff you do in a lifetime,</span>
+    <span class="r"></span>
+    <span class="r">which takes each of them a lifetime</span>
+    <span class="r"></span>
+    <span class="r">before they drift back to the bridge,</span>
+    <span class="r"></span>
+    <span class="r">where each kid touches the spray can</span>
+    <span class="r"></span>
+    <span class="r">that's hung there waiting in the air,</span>
+    <span class="r"></span>
+    <span class="r">waiting for them for a lifetime.</span>
+    <span class="r"></span>
+    <span class="r">They get back to work on the bridge</span>
+    <span class="r"></span>
+    <span class="r">and they tell each other nothing.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-surveillance">
+  <hr class="perf">
+  <h3 class="r">On Surveillance</h3>
+  <span class="r"></span>
+  <div class="fit" style="--cols:42">
+    <span class="r">This vast network of satellites,</span>
+    <span class="r">half in sun, half eclipsed by Earth,</span>
+    <span class="r">comprehensive, multi-spectral,</span>
+    <span class="r">could be the aluminum eyes</span>
+    <span class="r">of Police Cop.</span>
+    <span class="r">                        But</span>
+    <span class="r">                               Police Cop</span>
+    <span class="r">sits alone in his dark cruiser,</span>
+    <span class="r">cold coffee in his thermal mug,</span>
+    <span class="r">static on every channel,</span>
+    <span class="r">and keeps watch on an empty road.</span>
+  </div>
+</section>
+<section class="blk poem" id="on-recursion">
+  <hr class="perf">
+  <h3 class="r">On Recursion</h3>
+  <span class="r"></span>
+  <div class="fit" style="--cols:40">
+    <span class="r">10 print "    Police Cop        "</span>
+    <span class="r">20 goto 10</span>
+    <span class="r"></span>
+    <span class="r">run</span>
+  </div>
+  <div class="loop" style="--cols:40" role="img" aria-label="The words Police Cop printed over and over, drifting diagonally down the paper.">
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <span class="rr" aria-hidden="true"></span>
+    <div class="lhead" aria-hidden="true"></div>
+  </div>
+</section>
     </div>
     <div class="holes right" aria-hidden="true"></div>
   </div>
@@ -129,87 +1982,22 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ribbon);outline-off
   <a href="https://familydictionary.net/">[family dictionary]</a>
 </nav>
 <script>
-const DATA = {"sections": [{"title": "Police Cop and The Kids", "page": 1, "slug": "police-cop-and-the-kids", "banner": [" ___     _ _", "| _ \\___| (_)__ ___", "|  _/ _ \\ | / _/ -_)", "|_| \\___/_|_\\__\\___|", "    ___", "   / __|___ _ __", "  | (__/ _ \\ '_ \\", "   \\___\\___/ .__/", "           |_|", "                _", "   __ _ _ _  __| |", "  / _` | ' \\/ _` |", "  \\__,_|_||_\\__,_|", "   _____ _", "  |_   _| |_  ___", "    | | | ' \\/ -_)", "    |_| |_||_\\___|", "   _  ___    _", "  | |/ (_)__| |___", "  | ' <| / _` (_-<", "  |_|\\_\\_\\__,_/__/"], "poems": [{"title": "Meet Police Cop", "page": 2, "slug": "meet-police-cop", "lines": [["Police Cop", 0], ["pulls his gun,", 0], ["", 0], ["strokes his taser,", 0], ["flips his baton,", 0], ["", 0], ["tilts his pelvis,", 0], ["drops his shoulder,", 0], ["", 0], ["chimes his cuffs.", 0], ["It's a shame", 0], ["", 0], ["how these days", 0], ["nobody", 0], ["", 0], ["can understand", 0], ["the elegant", 0], ["", 0], ["language of", 0], ["semaphore.", 0]]}, {"title": "On Propriety", "page": 3, "slug": "on-propriety", "lines": [["Police Cop's absence", 0], ["from love poems", 0], ["does not constitute", 0], ["a precinct rule.", 0], ["", 0], ["While the Captain", 0], ["kisses the chief", 0], ["in her office,", 0], ["their profiles shadowed", 0], ["by privacy glass,", 0], ["", 0], ["Police Cop stands", 0], ["near a crossroads,", 0], ["likewise in shadow,", 0], ["alert for a perp.", 0]]}, {"title": "On Architecture", "page": 4, "slug": "on-architecture", "lines": [["Police Cop likes", 0], ["the square buildings", 0], ["", 0], ["that stand on stilts,", 0], ["leaving spaces", 0], ["", 0], ["in which he can", 0], ["find Police Cop.", 0]]}, {"title": "On Ceezy", "page": 5, "slug": "on-ceezy", "lines": [["Ceezy the Camaro driver", 0], ["paid extra to the Commonwealth", 0], ["that we may know that he or she", 0], ["is, was, and will forever be", 0], ["Ceezy the Camaro driver.", 0]]}, {"title": "On Velocity", "page": 6, "slug": "on-velocity", "lines": [["Police Cop flows out", 0], ["through the radar gun's", 0], ["electronic guts,", 0], ["", 0], ["rides its microwaves", 0], ["to the speeding car,", 0], ["from which he reflects", 0], ["", 0], ["upon the shadowed,", 0], ["tall, solitary", 0], ["form of Police Cop.", 0]]}, {"title": "Meet The Kids", "page": 7, "slug": "meet-the-kids", "lines": [["A geyser of dirt,", 0], ["a hole in the ground,", 0], ["and a pyramid", 0], ["of ejecta. Folks,", 0], ["your neighborhood is", 0], ["infested with kids.", 0], ["Guard your spaghetti.", 0], ["Clear your house of cokes.", 0], ["Watch the kids scatter.", 0], ["Watch them leave one kid", 0], ["standing by himself", 0], ["so he's just a kid", 0], ["for a moment, then", 0], ["he's the kids again.", 0]]}, {"title": "On Forecasting", "page": 8, "slug": "on-forecasting", "lines": [["In the guise of a cloud, the kids", 0], ["disassemble a car. They have", 0], ["no grasp of commerce. They have no", 0], ["plan. They have only high pressures", 0], ["and depressions, motions to their", 0], ["own winds, and a slight axial", 0], ["spin that's unlikely to take them", 0], ["beyond tropical storm status.", 0]]}, {"title": "On Making Distinctions", "page": 9, "slug": "on-making-distinctions", "lines": [["Some officers take requests,", 0], ["lean you on your car,", 0], ["cuff you while your friends", 0], ["laugh and take pictures.", 0], ["Other officers do not.", 0]]}, {"title": "Ontology", "page": 10, "slug": "ontology", "lines": [["His helmet says", 0], ["\"Police\"", 0], ["and his shirt says", 0], ["\"Police\"", 0], ["and his badge says", 0], ["\"Police\"", 0], ["but his heart says", 0], ["\"Cop\"", 0]]}, {"title": "On Procedure", "page": 11, "slug": "on-procedure", "lines": [["Police Cop", 0], ["files reports.", 0], ["", 0], ["He fails to", 0], ["file reports.", 0], ["", 0], ["He calls for backup.", 0], ["He forgets to call.", 0], ["", 0], ["At roll call, he finds", 0], ["he isn't naked.", 0], ["", 0], ["It's worse. He wears", 0], ["his uniform", 0], ["", 0], ["but he forgets", 0], ["his mirrored shades.", 0], ["", 0], ["He looks at a world", 0], ["that looks back at him", 0], ["", 0], ["and that's it.", 0], ["That does it.", 0], ["", 0], ["That wakes up", 0], ["Police Cop.", 0]]}, {"title": "On Secret Wars", "page": 12, "slug": "on-secret-wars", "lines": [["This off-brand convenience store ignores the Falwells,", 0], ["foregoes the wire circle, stocks its wooden top shelf", 0], ["", 0], ["so kids wrinkle comics, stepping on Spider-Man,", 0], ["Wolverine and the Hulk as they steal Playboy,", 0], ["", 0], ["Penthouse, Hustler and Chic. Falwells would have us take", 0], ["the kids to the woodpile but they're already in", 0], ["", 0], ["the woodpile. It's a great place to hide your comics.", 0]]}, {"title": "On Literature", "page": 13, "slug": "on-literature", "lines": [["Police Cop doesn't read novels.", 0], ["He puts them under surveillance.", 0]]}, {"title": "On Degrees of Scale", "page": 14, "slug": "on-degrees-of-scale", "lines": [["As the kids escape,", 0], ["the theatre floor's", 0], ["soda grip slows them", 0], ["imperceptibly.", 0], ["", 0], ["Meanwhile, to be fair,", 0], ["it slows the older,", 0], ["stronger, angrier", 0], ["pursuing usher", 0], ["", 0], ["to the same degree,", 0], ["imperceptibly.", 0]]}, {"title": "On Responsibility", "page": 15, "slug": "on-responsibility", "lines": [["When Police Cop rides", 0], ["a motorcycle,", 0], ["that motorcycle", 0], ["knows it's been ridden.", 0], ["", 0], ["That motorcycle", 0], ["feels like sunglasses", 0], ["fell from the heavens", 0], ["to garnish its cool.", 0], ["", 0], ["When Police Cop drives", 0], ["an unmarked cruiser,", 0], ["he drives that cruiser", 0], ["anonymously,", 0], ["", 0], ["such that the cruiser", 0], ["wonders who left it", 0], ["somehow even more", 0], ["unmarked than before.", 0]]}, {"title": "On Youth Culture", "page": 16, "slug": "on-youth-culture", "lines": [["Police Cop's face", 0], ["on the young punk's", 0], ["t-shirt. The kids", 0], ["love Police Cop", 0], ["because they can't", 0], ["appropriate", 0], ["him. So they do.", 0]]}, {"title": "In Haiku", "page": 17, "slug": "in-haiku", "lines": [["Lost in a haiku", 0], ["Instead of cherry blossoms", 0], ["You find Police Cop", 0]]}]}, {"title": "Sanity and Momentum", "page": 18, "slug": "sanity-and-momentum", "banner": ["        ___            _ _", "       / __| __ _ _ _ (_) |_ _  _", "       \\__ \\/ _` | ' \\| |  _| || |", "       |___/\\__,_|_||_|_|\\__|\\_, |", "                             |__/", "                          _", "             __ _ _ _  __| |", "            / _` | ' \\/ _` |", "            \\__,_|_||_\\__,_|", " __  __                   _", "|  \\/  |___ _ __  ___ _ _| |_ _  _ _ __", "| |\\/| / _ \\ '  \\/ -_) ' \\  _| || | '  \\", "|_|  |_\\___/_|_|_\\___|_||_\\__|\\_,_|_|_|_|"], "poems": [{"title": "On Sanity", "page": 19, "slug": "on-sanity", "lines": [["On row house stoops", 0], ["and metro trains,", 0], ["", 0], ["in vacant lots", 0], ["and alleyways,", 0], ["", 0], ["where endings", 0], ["meet endings", 0], ["", 0], ["those who scream", 0], ["at nothing", 0], ["", 0], ["stand and scream", 0], ["at nothing.", 0]]}, {"title": "On Linguistics", "page": 20, "slug": "on-linguistics", "lines": [["On every single metro car,", 0], ["Police Cop.", 0], ["", 0], ["Yes, on every metro car,", 0], ["Police Cop.", 0], ["", 0], ["Identical and redundant,", 0], ["listening for", 0], ["", 0], ["your telltale regional accent.", 0]]}, {"title": "On the Color Wheel", "page": 21, "slug": "on-the-color-wheel", "lines": [["The woman yelling", 0], ["\"Suck my goddamn dick!\"", 0], ["at the blue row house", 0], ["will soon be yelling", 0], ["\"Suck my goddamn dick!\"", 0], ["at the red row house.", 0]]}, {"title": "On Crying Out In Need", "page": 22, "slug": "on-crying-out-in-need", "lines": [["(for Daniil Kharms)", 1], ["", 0], ["The kitten in the tree", 0], ["calls for the old lady.", 0], ["The old lady calls for", 0], ["the kitten in the tree.", 0], ["The kitten in the tree", 0], ["has need of Police Cop;", 0], ["therefore, the old lady", 0], ["has need of Police Cop.", 0], ["", 0], ["It's time for crying out", 0], ["now, crying out in need.", 0], ["", 0], ["So the old lady calls", 0], ["Police Cop. Police Cop", 0], ["hears the lady calling,", 0], ["\"Police Cop! Police Cop!", 0], ["Police Cop! Police Cop!\"", 0], ["and the kitten mewing,", 0], ["\"Old lady! Old lady!", 0], ["Old lady! Old lady!\"", 0], ["", 0], ["in the time for crying", 0], ["out, crying out in need.", 0]]}, {"title": "On the Nature of Being", "page": 23, "slug": "on-the-nature-of-being", "lines": [["The kid in the blue", 0], ["superhero skirt", 0], ["doesn't know that she's", 0], ["a superhero.", 0]]}, {"title": "On the Metro", "page": 24, "slug": "on-the-metro", "lines": [["The kids place dead rats", 0], ["on the tracks at night.", 0], ["They give up their sleep", 0], ["so we'll know death's smell", 0], ["when it comes for us.", 0]]}, {"title": "On Momentum", "page": 25, "slug": "on-momentum", "lines": [["The St. Vitus guy", 0], ["takes the metro train.", 0], ["", 0], ["Weekday to weekday,", 0], ["station to station.", 0], ["", 0], ["Even when he's at", 0], ["his destination.", 0], ["", 0], ["Even when the train", 0], ["is not in motion.", 0], ["", 0], ["He dangles from an", 0], ["invisible rope.", 0], ["", 0], ["He dances against", 0], ["deceleration.", 0]]}, {"title": "On Giving A Fuck", "page": 26, "slug": "on-giving-a-fuck", "lines": [["You start by not giving a fuck", 0], ["and go on that way for awhile.", 0], ["Then you worry you're not sincere.", 0], ["The way you don't give a fuck now", 0], ["seems contrived when you look back on", 0], ["your not giving a fuck canon.", 0]]}, {"title": "On Broadway", "page": 27, "slug": "on-broadway", "lines": [["Police Cop gave me a ticket.", 0], ["He handed me a citation.", 0], ["It was like a song.", 0], ["I sang the chorus,", 0], ["sang it like a song", 0], ["pulled from his lyrical pink pad.", 0], ["", 0], ["The Chorus Goes Here", 1], ["", 0], ["He said I could go on my way.", 0], ["He said, \"Be about your business.\"", 0], ["But my business was", 0], ["him. I was about", 0], ["being like a song", 0], ["pulled from his lyrical pink pad.", 0], ["", 0], ["The Chorus Also Goes Here", 1], ["", 0], ["Then he climbed into my mirror.", 0], ["He stood and shrank himself away,", 0], ["faded like a song.", 0], ["Both of us faded", 0], ["like songs Police Cop", 0], ["pulled from his lyrical pink pad.", 0], ["", 0], ["And Here Is The Chorus:", 1], ["If the verse is in first person,", 0], ["the chorus shifts to second.", 0], ["You break the rules,", 0], ["you pay the fine.", 0], ["It's written on your ticket.", 0], ["It's written on your ticket.", 0]]}, {"title": "On Meaning", "page": 28, "slug": "on-meaning", "lines": [["7-11's ecosystem and", 0], ["its place in the ecosystem writ large.", 0], ["I go there when I don't need anything", 0], ["they're selling. What is it that I need?", 0], ["I need a priest. I need a research grant.", 0], ["I need a crack team of philosophers.", 0], ["I want to find a moral in this place.", 0], ["I have to find a moral in this place.", 0], ["They have those oddly wrinkled sausage rolls.", 0]]}, {"title": "On Fan Fiction", "page": 29, "slug": "on-fan-fiction", "lines": [["Police Cop shoots his gun", 0], ["metaphorically.", 0], ["", 0], ["Perps transform into mist", 0], ["cinematically.", 0], ["", 0], ["The orgy progresses", 0], ["systematically", 0], ["", 0], ["in bold combinations", 0], ["of greased Police Cop.", 0]]}, {"title": "On Locomotion", "page": 30, "slug": "on-locomotion", "lines": [["He walks in circles", 0], ["", 0], ["outside the station", 0], ["as you board the train", 0], ["and the train departs.", 0], ["", 0], ["He walks in circles", 0], ["at the last station", 0], ["as the train arrives", 0], ["and you disembark.", 0], ["", 0], ["It seems he travels", 0], ["by means of circles", 0], ["instead of by train", 0], ["", 0], ["as some people do.", 0]]}, {"title": "On Parts", "page": 31, "slug": "on-parts", "lines": [["for Dean Taciuch", 0], ["", 0], ["A hooker with a heart of gold.", 0], ["What's that all about? I once met", 0], ["a cook with a kidney of quartz,", 0], ["", 0], ["a short order cook.", 0], ["He made eggs for me.", 0], ["He kept perfect time.", 0], ["", 0], ["Lots of people have meat organs.", 0], ["They don't talk about it but it's", 0], ["all you need to know about them.", 0]]}, {"title": "On A Baker's Half-Dozen", "page": 32, "slug": "on-a-bakers-half-dozen", "lines": [["Police Cop gets the donut jokes.", 0], ["He doesn't mind the donut jokes.", 0], ["", 0], ["He knows he's like the donut hole", 0], ["at the center of the donut,", 0], ["", 0], ["ever-present in the donut,", 0], ["a component of the donut", 0], ["", 0], ["that makes the donut a donut", 0], ["by its absence from the donut.", 0]]}, {"title": "On Vaginas", "page": 33, "slug": "on-vaginas", "lines": [["The schizophrenic", 0], ["screaming in your face", 0], ["about vaginas", 0], ["has a lot to say", 0], ["about vaginas.", 0]]}, {"title": "On Consistency", "page": 34, "slug": "on-consistency", "lines": [["Hanging out his window,", 0], ["all day, every day,", 0], ["the young man says \"kiss me\"", 0], ["to no one, in Spanish.", 0]]}, {"title": "On Antics", "page": 35, "slug": "on-antics", "lines": [["The kids pass easily", 0], ["among the counted", 0], ["", 0], ["syllables and ignore", 0], ["arbitrary line breaks.", 0], ["", 0], ["They speak-a the English.", 0], ["They know grammar is just", 0], ["", 0], ["a nut punch among friends.", 0], ["They know logic is just", 0], ["", 0], ["another wet willie", 0], ["and to draw conclusions", 0], ["", 0], ["is to drop your trousers", 0], ["and bend at the middle.", 0], ["", 0], ["They know all this mooning", 0], ["doesn't lead anywhere.", 0]]}, {"title": "On Specificity", "page": 36, "slug": "on-specificity", "lines": [["Just before the", 0], ["apocalypse,", 0], ["", 0], ["not the final", 0], ["apocalypse,", 0], ["", 0], ["the most recent", 0], ["apocalypse,", 0], ["", 0], ["the interim,", 0], ["forgettable,", 0], ["", 0], ["no consequence", 0], ["apocalypse,", 0], ["", 0], ["a young woman,", 0], ["beautiful and", 0], ["", 0], ["off her meds,", 0], ["rose to preach", 0], ["", 0], ["\"And Jesus! Not", 0], ["God, not Christ! But", 0], ["", 0], ["Jesus! Baby", 0], ["Jesus!\" to the", 0], ["", 0], ["last commuter", 0], ["in the last car.", 0]]}, {"title": "On Amateur Night", "page": 37, "slug": "on-amateur-night", "lines": [["On amateur night", 0], ["Police Cop's routine", 0], ["doesn't ever change.", 0], ["", 0], ["He waits for his turn", 0], ["on amateur night", 0], ["then walks to the mic.", 0], ["", 0], ["He stares at the crowd", 0], ["and the crowd stares back", 0], ["on amateur night.", 0]]}, {"title": "On the Value of Small Gestures", "page": 38, "slug": "on-the-value-of-small-gestures", "lines": [["He took a shit", 0], ["on the corner.", 0], ["", 0], ["They put that shit", 0], ["on Google Earth.", 0]]}, {"title": "On the Endless BMX", "page": 39, "slug": "on-the-endless-bmx", "lines": [["The subatomic lattice", 0], ["of bike-riding kids,", 0], ["wheel to wheel to wheel,", 0], ["loves you because you", 0], ["are muddy and rutted", 0], ["and theirs to tear up.", 0]]}]}, {"title": "Caring and Corpses", "page": 40, "slug": "caring-and-corpses", "banner": ["   ___          _", "  / __|__ _ _ _(_)_ _  __ _", " | (__/ _` | '_| | ' \\/ _` |", "  \\___\\__,_|_| |_|_||_\\__, |", "                      |___/", "                     _", "        __ _ _ _  __| |", "       / _` | ' \\/ _` |", "       \\__,_|_||_\\__,_|", "  ___", " / __|___ _ _ _ __ ___ ___ ___", "| (__/ _ \\ '_| '_ (_-</ -_|_-<", " \\___\\___/_| | .__/__/\\___/__/", "             |_|"], "poems": [{"title": "On Caring", "page": 41, "slug": "on-caring", "lines": [["The kids", 0], ["take a long walk", 0], ["off a short, sharp cinquain.", 0], ["It's not that they're careless. They just", 0], ["don't care.", 0]]}, {"title": "On Narcotics", "page": 42, "slug": "on-narcotics", "lines": [["Police Cop chooses to ignore", 0], ["the pot you hide in your pocket.", 0], ["", 0], ["But later, when you reach into", 0], ["your pocket, you find your pot, yes,", 0], ["", 0], ["with a pen, a blank journal,", 0], ["and a photo of Police Cop.", 0]]}, {"title": "On Prosody", "page": 43, "slug": "on-prosody", "lines": [["The kids are not afraid to rhyme,", 0], ["though rhyme is an old house", 0], ["", 0], ["boarded up and haunted", 0], ["by dead and formless forms.", 0], ["", 0], ["See the kids walk up the path,", 0], ["footsteps like prosody.", 0], ["", 0], ["Watch them knock on the door", 0], ["with their eyes full of crime.", 0]]}, {"title": "On Legislation", "page": 44, "slug": "on-legislation", "lines": [["You can float", 0], ["a bill to legalize", 0], ["", 0], ["unicorn", 0], ["fucking in Congress but", 0], ["", 0], ["that won't make", 0], ["it law or fill the halls", 0], ["", 0], ["of Congress", 0], ["with horny unicorns.", 0]]}, {"title": "On Hopeless Causes", "page": 45, "slug": "on-hopeless-causes", "lines": [["Police Cop responds", 0], ["to a domestic. He drifts", 0], ["non-corporeal", 0], ["", 0], ["through the house's door,", 0], ["through its interior walls,", 0], ["and through the couple,", 0], ["", 0], ["who keep on fighting", 0], ["despite the concerned", 0], ["presence of Police Cop.", 0]]}, {"title": "On Industry", "page": 46, "slug": "on-industry", "lines": [["The kids make shivs,", 0], ["show shivs to kids.", 0], ["", 0], ["Those kids make shivs.", 0], ["They compare shivs,", 0], ["", 0], ["trade shivs for shivs,", 0], ["sell shivs to kids,", 0], ["", 0], ["put shivs to work,", 0], ["shiv kids with shivs.", 0], ["", 0], ["The point is, they're", 0], ["industrious,", 0], ["", 0], ["these kids with shivs.", 0]]}, {"title": "On Corpses", "page": 47, "slug": "on-corpses", "lines": [["We find a body", 0], ["in the morning and again", 0], ["we find a body", 0], ["", 0], ["as the sun goes down", 0], ["on Corpse Town. Did I mention", 0], ["we live in Corpse Town?", 0], ["", 0], ["So many corpses", 0], ["we named our town after them.", 0], ["We could be Gold Rush.", 0], ["", 0], ["We could be Wine Town,", 0], ["Canning, Cedar, Mountaintop,", 0], ["or Poet's Crossing", 0], ["", 0], ["if our most common", 0], ["resource was something besides", 0], ["bodies, lost and found.", 0]]}, {"title": "On Advertising", "page": 48, "slug": "on-advertising", "lines": [["This car repair shop", 0], ["says,", 0], ["\"We fix everything!\"", 0], ["", 0], ["That car repair shop", 0], ["says,", 0], ["\"Believe in Jesus!\"", 0], ["", 0], ["We're lucky to have", 0], ["such", 0], ["fine car repair shops.", 0], ["", 0], ["Our town is quite poor,", 0], ["with", 0], ["many broken cars.", 0]]}, {"title": "Yay! Hurray!", "page": 49, "slug": "yay-hurray", "lines": [["Death as a matter of course.", 0], ["Death as a matter of profit.", 0], ["Death upon death upon death.", 0], ["Are you going to eat your pancake?", 0], ["I would like to eat your pancake.", 0], ["Oh, and death.", 0]]}, {"title": "On Patterns", "page": 50, "slug": "on-patterns", "lines": [["The kids lie down on yellow lines", 0], ["and circle each other with chalk.", 0], ["", 0], ["As the flow of rush hour traffic", 0], ["draws blurred lines around their outlines,", 0], ["", 0], ["some fat ass bastard", 0], ["whose opinion counts", 0], ["", 0], ["says, \"That's not how", 0], ["you play hopscotch.\"", 0]]}, {"title": "On Beauty", "page": 51, "slug": "on-beauty", "lines": [["Police Cop orders", 0], ["an armored car", 0], ["", 0], ["from the motor", 0], ["pool. The motor", 0], ["", 0], ["pool says it's all", 0], ["out of armored", 0], ["", 0], ["cars, which is a", 0], ["lie but it's a", 0], ["", 0], ["beautiful lie,", 0], ["satisfying,", 0], ["", 0], ["satisfying", 0], ["to Police Cop.", 0]]}, {"title": "On Being Prepared", "page": 52, "slug": "on-being-prepared", "lines": [["Police Cop goes flat.", 0], ["The whole world pauses", 0], ["", 0], ["then resumes its spin.", 0], ["Back at the precinct,", 0], ["", 0], ["the needles and dials", 0], ["mark the crime rate's rise", 0], ["", 0], ["until Police Cop,", 0], ["who's always prepared,", 0], ["", 0], ["pops his cruiser's trunk", 0], ["and pulls out flares, a", 0], ["", 0], ["tire iron and", 0], ["a spare Police Cop.", 0]]}, {"title": "On Waking Up", "page": 53, "slug": "on-waking-up", "lines": [["Police Cop", 0], ["feels like you would feel", 0], ["if you found yourself", 0], ["waking up", 0], ["on your feet", 0], ["on a train", 0], ["underground", 0], ["in motion,", 0], ["unaware", 0], ["of how you got there", 0], ["or where you're going", 0], ["or even that you're", 0], ["Police Cop.", 0]]}, {"title": "On the Playground", "page": 54, "slug": "on-the-playground", "lines": [["Police Cop enters the playground,", 0], ["which is a spotlight, a blood dot", 0], ["", 0], ["squashed flat under a microscope,", 0], ["a magic circle drawn in chalk,", 0], ["", 0], ["inside of which he fears he'll be", 0], ["diva, doctor, demon, belly", 0], ["", 0], ["filled up with arrogant wizard,", 0], ["belly filled up with Police Cop.", 0]]}, {"title": "On Warnings", "page": 55, "slug": "on-warnings", "lines": [["The kids form a dragon", 0], ["in the southwest corner", 0], ["by the lemon juice rune", 0], ["that warns, \"Here there be crime.\"", 0]]}, {"title": "On Haiku", "page": 56, "slug": "on-haiku", "lines": [["Murder! Murder, then", 0], ["blossoms, grass, branches or snow.", 0], ["Surprise! More murder!", 0]]}, {"title": "On Dissemblances", "page": 57, "slug": "on-dissemblances", "lines": [["Police Cop flattens", 0], ["and spreads across the crime scene", 0], ["like oil, bile, or blood.", 0], ["", 0], ["Like oil to soak up", 0], ["the essence of crime and make", 0], ["a justice dressing.", 0], ["", 0], ["Or, if we must be", 0], ["literal when comparing", 0], ["a thing to a thing,", 0], ["", 0], ["like bile to break down", 0], ["crime like ribbons of duck fat.", 0], ["But now we've compared", 0], ["", 0], ["two things to two things", 0], ["and we've killed our haiku lines", 0], ["when our poor haiku", 0], ["", 0], ["just wanted dinner", 0], ["and blood and maybe a last", 0], ["kiss from Police Cop.", 0]]}, {"title": "On Evidence", "page": 58, "slug": "on-evidence", "lines": [["Police Cop leaves", 0], ["coffee cups. He", 0], ["", 0], ["doesn't litter,", 0], ["he doesn't crime,", 0], ["", 0], ["but as he goes", 0], ["he leaves the ghosts", 0], ["", 0], ["of coffee cups,", 0], ["blind styrofoam", 0], ["", 0], ["and aether cups,", 0], ["each containing", 0], ["", 0], ["a little sip", 0], ["of Police Cop.", 0]]}, {"title": "On Mystery", "page": 59, "slug": "on-mystery", "lines": [["Police Cop decides he", 0], ["must solve the mystery.", 0], ["", 0], ["He solves the mystery.", 0], ["Log it in the ledger:", 0], ["another job well done.", 0], ["", 0], ["His methodology,", 0], ["his tools and his sources,", 0], ["his clues and conclusions\u2026", 0], ["", 0], ["What are they? Who are they?", 0], ["What was the mystery?", 0], ["Another mystery!", 0], ["", 0], ["Log it in the ledger.", 0], ["A job for Police Cop!", 0]]}, {"title": "Honors", "page": 60, "slug": "honors", "lines": [["Police Cop's most decorated", 0], ["colleague wins another", 0], ["award, another promotion,", 0], ["another raise, and yet", 0], ["another front-page story for", 0], ["being the officer who most", 0], ["resembles Police Cop.", 0]]}, {"title": "On Selling Out", "page": 61, "slug": "on-selling-out", "lines": [["Police Cop won't shill, not even Hostess", 0], ["Fruit Pies that burst with the fruit of justice.", 0]]}, {"title": "On Empathy", "page": 62, "slug": "on-empathy", "lines": [["Police Cop greets the dirty cop.", 0], ["His shift ends as Dirty's begins.", 0], ["", 0], ["As he takes off his uniform", 0], ["to put on a fresh uniform", 0], ["", 0], ["over the black and blue and gold-", 0], ["buttoned uniform of his skin,", 0], ["", 0], ["the coyote and the sheep dog", 0], ["in the break room on the TV", 0], ["", 0], ["punch in and out as if to say,", 0], ["\"We understand you, Police Cop.\"", 0]]}, {"title": "On Being Left Behind", "page": 63, "slug": "on-being-left-behind", "lines": [["Then the corpses pull themselves together,", 0], ["", 0], ["rise and nod to one another,", 0], ["", 0], ["put hands in hands and walk away", 0], ["", 0], ["without trumpets, choirs or Jesus,", 0], ["", 0], ["leaving only stains and weapons,", 0], ["", 0], ["chalk outlines and scattered red flags,", 0], ["", 0], ["warnings placed there after the fact,", 0], ["", 0], ["clues for the clueless abandoned by crime.", 0]]}, {"title": "Frank, Long Dead, Says", "page": 64, "slug": "frank-long-dead-says", "lines": [["Certain people demand", 0], ["complicated explanations", 0], ["when in truth they are just", 0], ["not invited to my party.", 0]]}]}, {"title": "Change and Eternity", "page": 65, "slug": "change-and-eternity", "banner": ["   ___ _", "  / __| |_  __ _ _ _  __ _ ___", " | (__| ' \\/ _` | ' \\/ _` / -_)", "  \\___|_||_\\__,_|_||_\\__, \\___|", "                     |___/", "                      _", "         __ _ _ _  __| |", "        / _` | ' \\/ _` |", "        \\__,_|_||_\\__,_|", " ___ _                _ _", "| __| |_ ___ _ _ _ _ (_) |_ _  _", "| _||  _/ -_) '_| ' \\| |  _| || |", "|___|\\__\\___|_| |_||_|_|\\__|\\_, |", "                            |__/"], "poems": [{"title": "On Change", "page": 66, "slug": "on-change", "lines": [["You think and think and", 0], ["think about changing.", 0], ["", 0], ["Police Cop can change", 0], ["whenever he wants.", 0], ["", 0], ["Stuck on the highway,", 0], ["stuck on your commute,", 0], ["", 0], ["stuck pondering fate,", 0], ["predestination,", 0], ["", 0], ["and other such rot,", 0], ["you see Police Cop", 0], ["", 0], ["cross the median", 0], ["near the sign that says,", 0], ["", 0], ["\"For Official Use.\"", 0]]}, {"title": "On Getting Around", "page": 67, "slug": "on-getting-around", "lines": [["The kids ride long boards,", 0], ["", 0], ["skate boards, roller skates,", 0], ["", 0], ["inline skates, scooters,", 0], ["", 0], ["unicycle stilts", 0], ["", 0], ["(one wheel on each stick)", 0], ["", 0], ["then a single stilt", 0], ["", 0], ["with a single wheel,", 0], ["", 0], ["with the kids on top", 0], ["", 0], ["the way angels dance,", 0], ["", 0], ["uncountable and", 0], ["", 0], ["unaccountable.", 0]]}, {"title": "On Police Cop's Beat", "page": 68, "slug": "on-police-cops-beat", "lines": [["His beat includes the mall.", 0], ["Of course it does.", 0], ["When he walks through the mall,", 0], ["he deforms it.", 0], ["", 0], ["It folds around him, shards", 0], ["to his lodestone,", 0], ["like his mirrored glasses", 0], ["are fundamental,", 0], ["", 0], ["electromagnetic,", 0], ["invisibly", 0], ["touching the shoplifter,", 0], ["swapping flavors", 0], ["", 0], ["in the Baskin Robbins,", 0], ["tapping each parked", 0], ["car on one fogged window", 0], ["then moving on.", 0]]}, {"title": "On Faith", "page": 69, "slug": "on-faith", "lines": [["The kids swallow gum", 0], ["and hold it inside", 0], ["", 0], ["for seven long years", 0], ["and three shorter years,", 0], ["", 0], ["then they spit it out,", 0], ["salute alchemy,", 0], ["", 0], ["put on witchy hats,", 0], ["fondle prayer beads,", 0], ["", 0], ["invoke ancestors,", 0], ["envision Buddha", 0], ["", 0], ["embracing Jesus", 0], ["with Allah's strong arms,", 0], ["", 0], ["praise the lost cargo,", 0], ["and mould a golem", 0], ["", 0], ["to destroy their foes", 0], ["ecumenically.", 0]]}, {"title": "On Record", "page": 70, "slug": "on-record", "lines": [["For Carmela Ciuraru", 1], ["", 0], ["Police Cop knows all the dumb shit", 0], ["you ever said. He does not care.", 0], ["", 0], ["All the friends you have offended?", 0], ["The ones who wake you up at night?", 0], ["", 0], ["Tell them you have a clean record.", 0], ["Tell them to go to the precinct.", 0], ["", 0], ["Tell them they can get a report", 0], ["on your progress from Police Cop.", 0]]}, {"title": "On Fallacies", "page": 71, "slug": "on-fallacies", "lines": [["The kids tell stories", 0], ["around a campfire", 0], ["that doesn't exist", 0], ["except in stories.", 0]]}, {"title": "On Pop Music", "page": 72, "slug": "on-pop-music", "lines": [["Police Cop wears his helmet", 0], ["in his cruiser. He Corey", 0], ["Harts, though he would not get that", 0], ["reference. In the eighties,", 0], ["he didn't listen to pop music.", 0], ["He was several thousand", 0], ["years too old for that bullshit.", 0]]}, {"title": "On Origins", "page": 73, "slug": "on-origins", "lines": [["One theory tells us that", 0], ["the kids exploded from", 0], ["the Earth, which implies that", 0], ["they will leave us some day,", 0], ["expanding forever", 0], ["or collapsing at last.", 0], ["Other theories include", 0], ["divine intervention,", 0], ["malevolent action,", 0], ["consequences of our", 0], ["immoral behavior,", 0], ["a rude spontaneous", 0], ["generation from our", 0], ["discarded soda cans,", 0], ["etcetera, et al,", 0], ["but in truth we don't know", 0], ["and the kids won't tell us.", 0]]}, {"title": "On Righteousness", "page": 74, "slug": "on-righteousness", "lines": [["Police Cop enforces the ordinance", 0], ["forbidding all righteous indignation.", 0], ["", 0], ["Despite electronic ticketing and", 0], ["despite his speedy blue helicopter,", 0], ["", 0], ["the indignant persist in indignance,", 0], ["offenses pile up, and perps multiply.", 0], ["", 0], ["Call the mayor. Tell him it's an outrage.", 0], ["The law is the law and that's how things work.", 0], ["", 0], ["Tell the mayor that we won't stand for it.", 0], ["Tell the mayor we need more Police Cop.", 0]]}, {"title": "On Resemblances", "page": 75, "slug": "on-resemblances", "lines": [["Police Cop is not an onion,", 0], ["nor is he like an onion nor", 0], ["is he in fact or in likeness", 0], ["a set of Russian nesting dolls.", 0], ["", 0], ["He's more like a Tootsie Roll Pop", 0], ["held tight by a scholarly owl,", 0], ["at the limits of its patience", 0], ["as it licks and licks Police Cop.", 0]]}, {"title": "On Eternity", "page": 76, "slug": "on-eternity", "lines": [["Police Cop stands forever", 0], ["on that corner you passed", 0], ["in dad's maroon Buick", 0], ["the first time you left home.", 0], ["", 0], ["Start driving. Trust muscle", 0], ["memories. Past the mall", 0], ["that's no longer a mall,", 0], ["the houses where friends lived,", 0], ["all the replaced places", 0], ["placed in their old places.", 0], ["", 0], ["No matter what they say,", 0], ["you can go home again.", 0], ["If you lose your way, just", 0], ["turn left at Police Cop.", 0]]}, {"title": "On Manifestations", "page": 77, "slug": "on-manifestations", "lines": [["Police Cop as a faux coffin", 0], ["in the abandoned gothic hall.", 0], ["", 0], ["Police Cop as a dust devil", 0], ["circling the razed Mall of Murder.", 0], ["", 0], ["Police Cop as a smudge of cells", 0], ["joining origin and end times", 0], ["", 0], ["straddle-legged to clock the demons", 0], ["on their way to buy comic books", 0], ["", 0], ["at the churches they have chosen", 0], ["by intention or omission", 0], ["", 0], ["at the busy intersection", 0], ["of Your Old Friends and Police Cop.", 0]]}, {"title": "On Crossing Over", "page": 78, "slug": "on-crossing-over", "lines": [["The standalone arcade,", 0], ["the arcade in the mall,", 0], ["the corner store Zaxxon", 0], ["and the Putt Putt game room.", 0], ["", 0], ["The kids can take you there", 0], ["by bicycle ferry", 0], ["if you saved a token", 0], ["to put under your tongue.", 0]]}, {"title": "On Fitness", "page": 79, "slug": "on-fitness", "lines": [["Police Cop stands on the left side", 0], ["and on the right side of the globe,", 0], ["", 0], ["a whole world varnished with crystal", 0], ["layers of crime. With his left hand,", 0], ["", 0], ["he grabs Police Cop. With his right,", 0], ["he grabs Police Cop. The world rolls", 0], ["", 0], ["on a spindle of Police Cop", 0], ["as Police Cop crunches his abs.", 0]]}, {"title": "On On and On", "page": 80, "slug": "on-on-and-on", "lines": [["Having once touched disassembly,", 0], ["the kids turn their eyes to the world", 0], ["", 0], ["and they pull the world to pieces", 0], ["", 0], ["and put the pieces in boxes", 0], ["and pull the boxes to pieces", 0], ["", 0], ["and put those pieces in boxes", 0], ["and pull those boxes to pieces.", 0]]}, {"title": "On Enough Being Enough", "page": 81, "slug": "on-enough-being-enough", "lines": [["The kids are on our property.", 0], ["Our property's inside the kids.", 0], ["They confound the laws of trespass,", 0], ["inverting the order of things.", 0], ["", 0], ["They should respect our property.", 0], ["They should observe biology.", 0], ["They should obey physical laws.", 0], ["They should be particles or waves.", 0], ["", 0], ["Instead, our stuff's covered in kids,", 0], ["surrounded and suffused with kids", 0], ["who confound our laws of trespass,", 0], ["becoming our fences and lands,", 0], ["", 0], ["and judge the way we choose to live", 0], ["inverting the order of things.", 0]]}, {"title": "On Falling From On High", "page": 82, "slug": "on-falling-from-on-high", "lines": [["Police Cop stands on skyscrapers", 0], ["to calculate a penny's path", 0], ["from boredom through velocity", 0], ["down to negligent homicide.", 0], ["", 0], ["He would melt down every coin", 0], ["and beat the lumps to plowshares", 0], ["if he caught pennies in the act", 0], ["or if nickels fit the profile.", 0], ["", 0], ["He would dance our cares to nothing", 0], ["if the public built a dance hall", 0], ["with spinning disco penny lights", 0], ["and space for his skyscraper shoes.", 0], ["", 0], ["Until then, he just does the math:", 0], ["pennies per second per second,", 0], ["perfect boredom falling in space,", 0], ["E = MC Police Cop.", 0]]}, {"title": "On Sequences", "page": 83, "slug": "on-sequences", "lines": [["First the kids graffiti a bridge", 0], ["", 0], ["then they do a lifetime of stuff,", 0], ["", 0], ["the stuff you do in a lifetime,", 0], ["", 0], ["which takes each of them a lifetime", 0], ["", 0], ["before they drift back to the bridge,", 0], ["", 0], ["where each kid touches the spray can", 0], ["", 0], ["that's hung there waiting in the air,", 0], ["", 0], ["waiting for them for a lifetime.", 0], ["", 0], ["They get back to work on the bridge", 0], ["", 0], ["and they tell each other nothing.", 0]]}, {"title": "On Surveillance", "page": 84, "slug": "on-surveillance", "lines": [["This vast network of satellites,", 0], ["half in sun, half eclipsed by Earth,", 0], ["comprehensive, multi-spectral,", 0], ["could be the aluminum eyes", 0], ["of Police Cop.", 0], ["                        But", 0], ["                               Police Cop", 0], ["sits alone in his dark cruiser,", 0], ["cold coffee in his thermal mug,", 0], ["static on every channel,", 0], ["and keeps watch on an empty road.", 0]]}, {"title": "On Recursion", "page": 85, "slug": "on-recursion", "loop": "    Police Cop        "}]}], "title": [" ____       _ _             ____", "|  _ \\ ___ | (_) ___ ___   / ___|___  _ __", "| |_) / _ \\| | |/ __/ _ \\ | |   / _ \\| '_ \\", "|  __/ (_) | | | (_|  __/ | |__| (_) | |_) |", "|_|   \\___/|_|_|\\___\\___|  \\____\\___/| .__/", "                                     |_|"], "cover": ["                             ===+**###############***************+++*", "                           ::=+#####################*********.:+*++++-", "                         ::=*#%%####################*********-:==++*++=+", "                       ::-+#%%%###################**********+****+++++++=-", "                     -::=*%%%##########%%#########***********+++++++=+++++-", "                   +:::+#%%######%#%%####%%####************++++++++++++++++==", "                 :=-.-*#%#######%%%%%%%%#%%%%%###********++++++++++++++++++++-", "                -:  -*########%%%###%%%%%###*+=*+++******++++++++++++++++=++++-", "                -   -############%%%%%%%%%%%%##*******+++++++++++++++++++==++++-", "               +: .=###########%%%%%%######*#%%%*****+++++++++++++++++++++===+++:", "               : .*###########%%%%%%*###*#**##*%*++++++++++++++++++++====++===+=+:", "              . .*###########%%%%%%*#%%%#####*%#++++++++++++++++++++++===+======+=", "             :. +############%%%%%%#####+*%%%##++++++++++++++++++++=======-=======:", "             : -##############%%%%%%%##%%%%%%##++++++++++++++++=-+==+==============:", "            -:.*%#############%%%%#%%%%%%***+%%+++++++++++++++=+++=================-", "            - -################%##%%######*++*++++++++++++++++++===================-", "           *: *%####################%###*++++++++++++++++++++++=====================- @", "           :.:#%######################***##*******++++++============================+-", "           ..+#################%%%%%%%%%%%%%%%%%%%%%%%%%%%##%%##***+++================", "           .:*#########%%@@@%%%#*+###%%%%%%%%#%%%#######**+====++++****##**#***+=====-", "           .-%%@%%%%%%#*+ :##%%%%%%%%%%%%%%%%##########%#%%%%%##********%#+=%%%@=====-", "           :+#-  +%####%@%%%%%%########%%%%%%%%%%%%%%%%%##+=-:..::=+****#+*=#%%--====-", "          --  :#%%%%%%%%###%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@%%%##**-=+%%--=====-", "          ..%@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@%@#--=======-", "          :*%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+-==========", "          *##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%###--====-=====", "         =#=%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#**#%=-========-", "          ++:*#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@%###%%####-===-====-", "           +- -+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#####%%%%%##**#%%%%%%%##*-==-===--", "           +++-*%%%%%%%%%%%%%%%%%######****###******++*++*+++++++++#%%%%%%%#*%=-----+#+", "           =+++*%%%%%%%%%%%%%%%%%###******###*******###*#*******+++#%%%%%%%%##*--=#%##=", "           ==*%%%%%%%%%%%%%%%#########****######%%%##%######******+*%%%%%%%%#*#######*=", "           ++%%%%%%%%%%#######*++**#*#******###*=+####*#%##*###***+*%%%%%%%%%*##*##*##+@", "           :=%%%%%%%%%%######%%%%#%%%%%#+**#*############%*#####**+*%%%%%%%%%#*#*##+##+", "            *%#%%%%%%%##%%%#####%%%%%##%+**###%%%%**#####%##%####***#%%%%%%%%*####=##+", "            *%#%%%%%%#%%###%%%#%%%%%%%%%*#**##**+*%%####%%%#+**##+++#%%%%%%%%**###=##+", "            *%#%%%%%%*%#####%%%%%####**#*#*+##****%%%%%##%%######*++*%%%%%%%%#*###%#*+", "            *%##%%%%##%######%%%###**#**%%#*+##%%@%##***##=*######+++#%%%%%%%**#####*+", "            *###%%%%%##%%####%%%%%%#%###%##*+*#%*=*##%%##%%#######+*+*%%%%%%%**#####+*", "            @*%*%%%%%%*###**#*###%%%##%%%##**++*%@%%%%%%%%%##%##%*+++*%%%%%%%*##%##*=@", "            +@###%%%%%##%%#*#%%%%###*#%%%##***++*#%%%%%#%%%######+++++%%%%%%%*#%###*-", "              *%*%%%%%%%##%%##%%%%%##%%%##***++*++*#%%%##%%#####++++++%%%%%%#*##%#-=", "              @*##%%%%%%%#####%#+#%%%#%%%#****+*+++++*#%%#*###*++++++*%%%%%%#*#%.#.+", "               @#*#%%%%%%##############%%#*****++++****+++++++++++++**%%%%%%#*#=*-+*", "               -%#*%%%%%%%#############%%#*****#*+++*******+++++++++*+%%%%%%#####+@#@", "               @*%*#%%%%%%############%%#**+++++**+*****++++++++++++*+#%%%%%*###%@%%*", "                 *%#%%%%%%%#############*+++**##+++*****++++++++++++*+*%%%%%##%@%%%%*", "                 @##%%%%%%%#############%#*************+++++++++++++++*%%%%%##%%%%%%#+", "                  ###%%%%%%%##########%%%#*+++*********++++++++++++***#%%%%%#%%%%%%%%=", "                  *#%%%%%%%##########%%###*************+++++++++*****#%%%%%%%%%%%%%%#*@", "                  **%%%%%%%%#######%%%%#%#**#**********++++++****####%%%%%%%%%%%%%%%*#=", "                =#%%%%%%%%%%#######%#%####*#***+++++++*++*****####%%%%%%%%%%%%%%%%%%==", "             #+*%%%%%%%%%%%%%##########**#*****************#####%%%%%%%%%%%%%%%%%%%+@", "           =*#%%%%%%%%%%%%%%%%######*#%%%%#####******###*#####%%%%%%%%%%%%%%%%%%%%#=", "         +*%%%%%%%%%%%%%%%%%%%%##########*******+******#####%%%%%%%%%%%%%%%%%%%%%#*=", "       +*%%%%%%%%%%%%%%%%%%%%%%%##########*************###%%%%%%%%%%%%%%%%%%%%%%#*=", "     +*%%%%%%%%%%%%%%%%%%%%%%%%%%#%##########***********##%%%%%%%%%%%%%%%%%%%%#####+", "    +#%%%%%%%%%%%%%%%%%%%%%%%%%%%%#############*********##%%%%%%%%%%%%#%%%%%%#####%#+=", "  +*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#####%%####***********##%%%%%%%%%%%%%%%%%####%%%%%##**++==", "#*#%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%####%##**************#%%%%%%%%%%%%%%%%%######%%%%######%#+-", "#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%####*******+++++**#%%%%%%%%%%%%%%%%%#####%##%%##%##%=.*##+=", "##%%%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##********++*+**%%%%%%%%%%%%%%%%%%#####%%##%%%##%%%%%#####+-", "%%#%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#**+****+*##%%%%%%%%%%%%%%%%%%%%####%%%##%%%%%############+-@", "%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@%%%%%%%%%%%%%%%%%%%%%%###%%%##%%%%%%%%%###########+:", "#######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%###%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##%%%%#%%%%%%%%%%%%%##########=", "##%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%%%%%#%%%%%%%%%%%%%%%#########+.", "#######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%%%%###%%%####%%%%%%%%%%%%%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%#########+=-:", "#%#%%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%########%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@%%%%%%####*#**-", "#%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##########%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#*#######%%%%%%%%#*", "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#######%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##%%%%%%%%%%###%%", "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%####%"]};
 const strip = document.getElementById('strip');
 const rail = strip.querySelector('.rail'), phead = strip.querySelector('.phead');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-
 const el = (tag, cls) => { const e=document.createElement(tag); if(cls) e.className=cls; return e; };
-const row = (s, cls='', tag='span') => { const e=el(tag,('r '+cls).trim()); e.dataset.s=s; e.textContent=s; return e; };
-const blank = () => el('span','r');
-function bannerBlock(lines, big){
-  const b=el('div','banner'+(big?' big':''));
-  b.style.setProperty('--cols', Math.max(...lines.map(l=>l.length))+2);
-  b.setAttribute('aria-hidden','true');
-  lines.forEach(l=>b.append(row(l)));
-  return b;
-}
 
-// ---- build the strip ----
-const blocks=[];
-function addBlock(id, kind, build, speed=1){
-  const b=el('section','blk '+kind); if(id) b.id=id; b.dataset.speed=speed;
-  if(blocks.length) b.append(el('hr','perf'));
-  build(b); strip.append(b); blocks.push(b); return b;
-}
-addBlock('cover','cover',b=>{
-  const fig=el('figure','cover'); fig.setAttribute('role','img'); fig.setAttribute('aria-label','Cover: Police Cop, drawn in ASCII characters');
-  const art=el('div','art'); art.style.setProperty('--cols', Math.max(...DATA.cover.map(l=>l.length)));
-  art.setAttribute('aria-hidden','true');
-  DATA.cover.forEach(l=>{ const r=row(l); r.dataset.speed=14; art.append(r); }); fig.append(art); b.append(fig);
-  const h=el('h1','sr'); h.textContent='Police Cop, by Danny Collier'; b.append(h);
-  const ban=bannerBlock(DATA.title,true); ban.querySelectorAll('.r').forEach(r=>r.dataset.speed=3); ban.style.marginTop='calc(var(--lh)*2)'; b.append(ban);
-  const by=el('div','center'); by.setAttribute('aria-hidden','true'); by.append(blank(), row('by Danny Collier')); b.append(by);
-});
-addBlock('dedication','dedication',b=>{
-  const d=el('div'); d.style.paddingLeft='min(12ch,15cqi)';
-  ['For Bryan Hodges,','who first invented and then','forgot Police Cop.'].forEach(t=>d.append(row(t,'it')));
-  b.append(d);
-});
-addBlock('contents','contents',b=>{
-  b.append(row('Contents','','h2'), blank());
-  const t=el('div','toc');
-  const titles=DATA.sections.flatMap(s=>[s.title,...s.poems.map(q=>'  '+q.title)]);
-  t.style.setProperty('--cols', Math.max(...titles.map(x=>x.length))+1);
-  DATA.sections.forEach(s=>{
-    const a=row(s.title,'sec','a'); a.href='#'+s.slug; t.append(a);
-    s.poems.forEach(q=>{ const a=row('  '+q.title,'','a'); a.href='#'+q.slug; t.append(a); });
-  });
-  b.append(t);
-}, 3);
-// ---- "On Recursion" is a program: 10 PRINT / 20 GOTO 10 ----
-const LOOP_STR=DATA.sections.flatMap(s=>s.poems).find(p=>p.loop).loop, LOOP_W=40, LOOP_H=14;
-function loopBody(b){
-  const lst=el('div','fit'); lst.style.setProperty('--cols', LOOP_W);
-  lst.append(row(`10 print "${LOOP_STR}"`), row('20 goto 10'), blank(), row('run'));
-  b.append(lst);
-  const box=el('div','loop'); box.style.setProperty('--cols', LOOP_W);
-  box.setAttribute('role','img'); box.setAttribute('aria-label','The words Police Cop printed over and over, drifting diagonally down the paper.');
-  for(let i=0;i<LOOP_H;i++){ const s=el('span','rr'); s.setAttribute('aria-hidden','true'); box.append(s); }
-  const h=el('div','lhead'); h.setAttribute('aria-hidden','true'); box.append(h);
-  b.append(box);
-}
-const poemIds=[];
-DATA.sections.forEach(s=>{
-  addBlock(s.slug,'section',b=>{
-    const h=el('h2','sr'); h.textContent=s.title; b.append(h);
-    b.append(bannerBlock(s.banner,false));
-  }, 1.5);
-  s.poems.forEach(p=>{
-    poemIds.push(p.slug);
-    addBlock(p.slug,'poem',b=>{
-      b.append(row(p.title,'','h3'), blank());
-      if(p.loop) return loopBody(b);
-      const body=el('div');
-      if(p.lines.some(([t])=>/^ {4,}/.test(t))){ body.className='fit'; body.style.setProperty('--cols', Math.max(...p.lines.map(([t])=>t.length))+1); }
-      p.lines.forEach(([t,i])=>body.append(t?row(t,i?'it':''):blank()));
-      b.append(body);
-    });
-  });
-});
+// ---- the book is plain HTML above; this wires the printer to it ----
+// Every .r is one printed row; its text is kept on data-s so it can be blanked and reprinted.
+const blocks=[...strip.querySelectorAll('.blk')];
+strip.querySelectorAll('.r').forEach(r=>r.dataset.s=r.textContent);
+const poemIds=blocks.filter(b=>b.classList.contains('poem')).map(b=>b.id);
+// "On Recursion" is a program: 10 PRINT / 20 GOTO 10. The listing is the source of the string it prints.
+const loopBox=strip.querySelector('.loop');
+const LOOP_STR=/print "(.*)"/.exec(loopBox.parentElement.querySelector('.fit').textContent)[1];
+const LOOP_W=+getComputedStyle(loopBox).getPropertyValue('--cols'), LOOP_H=loopBox.querySelectorAll('.rr').length;
 const tail=el('div','tail'), hint=el('span','hint'); hint.textContent='scroll to feed the paper'; tail.append(hint); strip.append(tail);
-strip.querySelectorAll('h3.r').forEach(h=>{ h.style.margin='0'; h.style.fontSize='inherit'; });
 
 // ---- sound: a synthesized 9-pin buzz ----
 // On unless the reader has turned it off. Browsers keep audio muted until the first
@@ -454,6 +2242,7 @@ else {
   if(location.hash) jump(decodeURIComponent(location.hash.slice(1)));
   else setHint();
 }
+document.documentElement.classList.remove('booting');
 </script>
 </body>
 </html>
