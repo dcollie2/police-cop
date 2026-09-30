@@ -29,17 +29,17 @@
 @font-face{font-family:"Courier Prime";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/courier-prime-bold.woff2) format("woff2")}
 @font-face{font-family:"Courier Prime";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/courier-prime-italic.woff2) format("woff2")}
 :root{
-  --desk:#D6DAD0; --paper:#FCFDF8; --bar:#E3EEDD; --ink:#262A33; --faded:#80887C; --ribbon:#B3302A; --hole:#D6DAD0; --perf:#B3BDAB;
+  --desk:#D6DAD0; --paper:#FCFDF8; --bar:#E3EEDD; --ink:#262A33; --faded:#646B60; --ribbon:#B3302A; --hole:#D6DAD0; --perf:#B3BDAB;
   --lh:1.75rem; --holes:1.6rem; --pad:clamp(1rem,6vw,3.5rem);
   --mono:"Courier Prime","Courier New",Courier,monospace;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
-  --desk:#0D0F0D; --paper:#171A17; --bar:#1D241D; --ink:#D9DED2; --faded:#7C867A; --ribbon:#E26A60; --hole:#0D0F0D; --perf:#3A473A;
+  --desk:#0D0F0D; --paper:#171A17; --bar:#1D241D; --ink:#D9DED2; --faded:#8A948A; --ribbon:#E26A60; --hole:#0D0F0D; --perf:#3A473A;
 }}
 :root[data-theme="dark"]{
-  --desk:#0D0F0D; --paper:#171A17; --bar:#1D241D; --ink:#D9DED2; --faded:#7C867A; --ribbon:#E26A60; --hole:#0D0F0D; --perf:#3A473A;
+  --desk:#0D0F0D; --paper:#171A17; --bar:#1D241D; --ink:#D9DED2; --faded:#8A948A; --ribbon:#E26A60; --hole:#0D0F0D; --perf:#3A473A;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 1rem)}

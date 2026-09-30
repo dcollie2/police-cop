@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Not found: Police Cop</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#D6DAD0">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0D0F0D">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+@font-face{font-family:"Courier Prime";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/courier-prime-regular.woff2) format("woff2")}
+@font-face{font-family:"Courier Prime";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/courier-prime-bold.woff2) format("woff2")}
+:root{
+  --desk:#D6DAD0; --paper:#FCFDF8; --bar:#E3EEDD; --ink:#262A33; --ribbon:#B3302A; --hole:#D6DAD0; --perf:#B3BDAB;
+  --lh:1.75rem; --holes:1.6rem;
+}
+@media (prefers-color-scheme:dark){ :root{
+  --desk:#0D0F0D; --paper:#171A17; --bar:#1D241D; --ink:#D9DED2; --ribbon:#E26A60; --hole:#0D0F0D; --perf:#3A473A;
+}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--desk);color:var(--ink);font:1rem/var(--lh) "Courier Prime","Courier New",Courier,monospace;-webkit-font-smoothing:antialiased}
+.feed{max-width:calc(62ch + 5rem);margin:0 auto;padding:0 .75rem}
+.sheet{
+  display:grid;grid-template-columns:var(--holes) 1fr var(--holes);min-height:100vh;
+  background:repeating-linear-gradient(to bottom,var(--bar) 0 calc(var(--lh)*3),var(--paper) calc(var(--lh)*3) calc(var(--lh)*6));
+}
+.holes{
+  background-color:var(--paper);
+  background-image:radial-gradient(circle at 50% 50%,var(--hole) 0 .32rem,transparent .36rem);
+  background-size:100% .5in;
+}
+.holes.left{border-right:1px dashed var(--perf)}
+.holes.right{border-left:1px dashed var(--perf)}
+main{padding:calc(var(--lh)*6) clamp(1rem,6vw,3.5rem);white-space:pre-wrap}
+h1{margin:0;font-size:inherit;font-weight:700}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+a:hover,a:focus-visible{background:var(--ink);color:var(--paper);outline:0}
+.err{color:var(--ribbon)}
+</style>
+</head>
+<body>
+<div class="feed">
+  <div class="sheet">
+    <div class="holes left" aria-hidden="true"></div>
+    <main>
+<h1>Police Cop</h1>
+
+<p class="err">?syntax error in 404
+ready.</p>
+
+<p>There's no page here. Police Cop
+has it under surveillance anyway.</p>
+
+<p><a href="/">[cover]</a>  <a href="/#contents">[contents]</a></p>
+    </main>
+    <div class="holes right" aria-hidden="true"></div>
+  </div>
+</div>
+</body>
+</html>
