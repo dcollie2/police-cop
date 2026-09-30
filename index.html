@@ -34,8 +34,8 @@ body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--mono);fo
   background-image:radial-gradient(circle at 50% 50%,var(--hole) 0 .32rem,transparent .36rem);
   background-size:100% .5in;
 }
-.holes.l{border-right:1px dashed var(--perf)}
-.holes.r{border-left:1px dashed var(--perf)}
+.holes.left{border-right:1px dashed var(--perf)}
+.holes.right{border-left:1px dashed var(--perf)}
 #strip{position:relative;container-type:inline-size;padding:0 var(--pad);min-width:0}
 .blk{position:relative;padding:calc(var(--lh)*3) 0 calc(var(--lh)*4);line-height:var(--lh);white-space:pre-wrap;cursor:default}
 .blk.poem,.blk.section,.blk.cover{cursor:pointer}
@@ -93,9 +93,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ribbon);outline-off
 <body>
 <main class="feed">
   <div class="sheet">
-    <div class="holes l" aria-hidden="true"></div>
+    <div class="holes left" aria-hidden="true"></div>
     <div id="strip"><div class="rail" aria-hidden="true"></div><div class="phead" aria-hidden="true"></div></div>
-    <div class="holes r" aria-hidden="true"></div>
+    <div class="holes right" aria-hidden="true"></div>
   </div>
 </main>
 <nav class="nav" aria-label="Book">
