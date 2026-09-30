@@ -5,8 +5,9 @@ line by line on continuous-feed paper. Live at [police-cop.com](https://police-c
 
 ## How it works
 
-The whole site is one static page, `index.html`: markup, styles, the poems and the
-printer are all in that file. There is no build step. GitHub Pages serves the `main`
+The whole site is one static page, `index.html`: the poems are plain HTML in that file,
+with the styles and the printer script beside them. There is no build step, and the book
+reads fine with JavaScript off. GitHub Pages serves the `main`
 branch as-is (`.nojekyll` keeps Jekyll out of the way; `CNAME` holds the custom domain).
 
 - **Feeding the paper.** Each block (cover, contents, section banners, poems) prints
