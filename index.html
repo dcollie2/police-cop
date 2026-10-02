@@ -2241,6 +2241,9 @@ async function reset(){
   while(printing){ skip=true; await frame(); }
   if(loop.box){ loop.running=false; cancelAnimationFrame(loop.raf); loop.lines=[]; loop.cur=''; loop.draw(); }
   snd.buzz(false); headOn(false);
+  // the head and rail are positioned absolutely, so where they last sat would keep the
+  // page that tall once the paper is torn off: a screen of bare desk below an empty strip
+  const sr=strip.getBoundingClientRect(); placeHead(sr.left, sr.top);
   history.replaceState(null,'',location.pathname+location.search);
   window.scrollTo(0,0);
   if(reduce.matches){ if(loop.box) loop.run(); return; }
