@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /play-k7q2/
