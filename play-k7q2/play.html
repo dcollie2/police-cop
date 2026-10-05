@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta name="robots" content="noindex">
   <title>Danny Collier - Police Cop! — Play</title>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <meta name="author" content="Danny Collier">
-  <link rel="stylesheet" href="style.css">
-  
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0D0F0D">
+  <link rel="preload" href="fonts/ibm-mda.woff" as="font" type="font/woff" crossorigin>
+  <script>try{ const p=localStorage.getItem('phosphor'); if(p) document.documentElement.dataset.phosphor=p; }catch(e){}</script>
+
   <link rel="stylesheet" href="interpreter/parchment.css" type="text/css">
+  <link rel="stylesheet" href="crt.css">
 <script src="interpreter/jquery.min.js"></script>
 <script src="interpreter/main.js"></script>
 <script src="interpreter/ie.js" nomodule></script>
@@ -17,35 +21,53 @@
 parchment_options = {
 default_story: [ "interpreter/Police Cop!.gblorb.js" ],
 lib_path: 'interpreter/',
+set_body_to_page_bg: 0,
+do_vm_autosave: 0,
 };
 </script>
-  
+
  </head>
 <body class="play">
-<div class="container">
-<div class="coverimage"><span><a href="Cover.jpg"><img src="Small Cover.jpg" border="1"></a></span></div>
-<div class="links">
-<div class="smalltitle">Police Cop!</div>
-<ul>
-<li><a href="index.html">Home page</a></li>
-</ul>
-</div>
-
+<main class="monitor">
+<div class="tube">
 <div id="gameport">
 <div id="windowport">
 <noscript>
 <p>You'll need to turn on Javascript in your web browser to play this game.</p>
 </noscript>
 </div>
-<div id="loadingpane">
-<img src="interpreter/waiting.gif" alt="LOADING"><br>
-<em>&nbsp;&nbsp;&nbsp;Loading...</em>
-</div>
+<div id="loadingpane">A&gt;police<span class="cur"></span></div>
 <div id="errorpane" style="display:none;"><div id="errorcontent">...</div></div>
 </div>
-
+<div class="glass" aria-hidden="true"></div>
 </div>
-<div class="interpretercredit"><a href="https://github.com/curiousdannii/parchment">Parchment for Inform 7 (2022.8)</a></div>
+<div class="chin" aria-hidden="true"><span>Police Cop!</span><span class="led"></span></div>
+</main>
+
+<nav class="panel" aria-label="Monitor">
+  <a href="index.html">[about]</a>
+  <button data-phosphor="green">[green]</button>
+  <button data-phosphor="amber">[amber]</button>
+  <button data-phosphor="white">[white]</button>
+  <a class="credit" href="https://github.com/curiousdannii/parchment">[Parchment for Inform 7]</a>
+</nav>
+<script>
+const root=document.documentElement, switches=document.querySelectorAll('.panel button');
+function phosphor(p){
+  root.dataset.phosphor=p;
+  switches.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.phosphor===p)));
+}
+phosphor(root.dataset.phosphor||'green');
+switches.forEach(b=>b.addEventListener('click',()=>{
+  phosphor(b.dataset.phosphor);
+  try{ localStorage.setItem('phosphor',b.dataset.phosphor); }catch(e){}
+  const input=document.querySelector('#gameport input.Input'); if(input) input.focus();
+}));
+// keep the monitor above the on-screen keyboard
+if(window.visualViewport){
+  const fit=()=>{ if(visualViewport.scale===1) root.style.setProperty('--vvh',visualViewport.height+'px'); };
+  visualViewport.addEventListener('resize',fit);
+}
+</script>
 </body>
 </html>
-

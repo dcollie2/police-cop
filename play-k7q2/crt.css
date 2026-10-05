@@ -1,0 +1,111 @@
+/*
+
+The play page as a mid-80s PC: Parchment's windows inside a monochrome monitor.
+Loaded after interpreter/parchment.css, whose --glkote-* variables it overrides.
+
+*/
+
+/* WebPlus IBM MDA, CC BY-SA 4.0: see fonts/LICENSE.txt */
+@font-face{font-family:"IBM MDA";font-style:normal;font-weight:400;font-display:block;src:url(fonts/ibm-mda.woff) format("woff")}
+
+:root{
+  --ph:#4AF285; --ph-hi:#D6FFE3; --ph-rgb:74 242 133; --tube:#030B06; --tube-hi:#0B2114;
+  --desk:#0D0F0D; --faded:#8A948A; --case:#D6CFBA; --case-lo:#B5AE98; --case-ink:#6F6957;
+  --mono:"IBM MDA","Courier New",Courier,monospace;
+
+  /* the screen is 4:3 and as large as the window allows; type is sized for about 80 columns */
+  --vh:var(--vvh,100dvh);
+  --gap:clamp(6px,2vmin,20px); --bezel:clamp(10px,3vmin,36px); --chin:clamp(22px,4.5vmin,40px); --nav:2.5rem;
+  --room:calc(var(--vh) - var(--nav) - var(--chin) - var(--bezel) - var(--gap) * 2);
+  --w:min(100vw - var(--bezel) * 2 - var(--gap) * 2, var(--room) * 4 / 3, 1120px);
+  --h:calc(var(--w) * .75);
+  --inset:clamp(8px,2.4vmin,28px);
+  --px:clamp(15px, var(--w) / 56, 24px);
+
+  --glkote-mono-family:var(--mono); --glkote-prop-family:var(--mono); --glkote-prop-half-leading:0em;
+  --glkote-buffer-bg:transparent; --glkote-buffer-fg:var(--ph); --glkote-buffer-size:var(--px); --glkote-buffer-line-height:1.3;
+  --glkote-buffer-reverse-bg:var(--ph); --glkote-buffer-reverse-fg:var(--tube);
+  --glkote-grid-bg:transparent; --glkote-grid-fg:var(--ph); --glkote-grid-size:var(--px); --glkote-grid-line-height:calc(var(--px) * 1.3);
+  --glkote-grid-reverse-bg:var(--ph); --glkote-grid-reverse-fg:var(--tube);
+  --glkote-input-fg:var(--ph-hi);
+}
+:root[data-phosphor="amber"]{ --ph:#FFB000; --ph-hi:#FFE9B8; --ph-rgb:255 176 0; --tube:#0B0700; --tube-hi:#221600; }
+:root[data-phosphor="white"]{ --ph:#D3D9DE; --ph-hi:#FFFFFF; --ph-rgb:211 217 222; --tube:#05070A; --tube-hi:#151A20; }
+/* on a phone the screen fills the window instead of holding 4:3 */
+@media (max-width:640px),(max-height:520px){ :root{ --w:calc(100vw - var(--bezel) * 2 - var(--gap) * 2); --h:var(--room); } }
+
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--desk)}
+body{margin:0;height:var(--vh);overflow:hidden;background:var(--desk);color:var(--faded);font-family:var(--mono);font-size:16px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;-webkit-text-size-adjust:none}
+
+/* the case */
+.monitor{padding:var(--bezel) var(--bezel) 0;border-radius:clamp(8px,2vmin,22px);
+  background:linear-gradient(to bottom,var(--case),var(--case-lo));
+  box-shadow:inset 0 1px 0 #F1EBD8,inset 0 -3px 0 #8C8672,0 2vmin 5vmin rgb(0 0 0 / .6)}
+.tube{position:relative;width:var(--w);height:var(--h);overflow:hidden;
+  border:clamp(3px,.9vmin,9px) solid #24221C;border-radius:clamp(12px,3vmin,34px) / clamp(14px,3.6vmin,40px);
+  background:radial-gradient(ellipse at center,var(--tube-hi) 0,var(--tube) 78%);
+  box-shadow:0 0 0 1px #8C8672,0 1px 0 2px #F1EBD8}
+/* scanlines, the dark corners of the tube, a little room light on the glass */
+.glass{position:absolute;inset:0;z-index:5;pointer-events:none;border-radius:inherit;
+  background:
+    repeating-linear-gradient(to bottom,transparent 0 2px,rgb(0 0 0 / .2) 2px 3px),
+    radial-gradient(ellipse at center,transparent 58%,rgb(0 0 0 / .55) 100%),
+    linear-gradient(135deg,rgb(255 255 255 / .06) 0,transparent 32%);
+  box-shadow:inset 0 0 3vmin rgb(0 0 0 / .85)}
+.chin{height:var(--chin);display:flex;align-items:center;justify-content:space-between;padding:0 .35em;
+  color:var(--case-ink);font-size:clamp(9px,1.7vmin,13px);letter-spacing:.12em;text-transform:uppercase;text-shadow:0 1px 0 #EFE9D6}
+.led{width:.75em;height:.75em;border-radius:50%;background:#58E07A;box-shadow:0 0 .5em #58E07A,inset 0 0 0 1px rgb(0 0 0 / .25)}
+
+/* the row of switches under the monitor */
+.panel{height:var(--nav);flex:none;display:flex;align-items:center;justify-content:center;gap:clamp(.25rem,2vw,1.25rem);
+  font-size:14px;max-width:100vw;padding:0 .5rem;white-space:nowrap}
+.panel button,.panel a{font:inherit;background:none;border:0;color:var(--faded);text-decoration:none;padding:.3rem .35rem;cursor:pointer}
+.panel button:hover,.panel a:hover{background:var(--faded);color:var(--desk)}
+.panel button[aria-pressed="true"]{color:var(--ph)}
+.panel button[aria-pressed="true"]:hover{background:var(--ph);color:var(--desk)}
+.panel a:focus-visible,.panel button:focus-visible{outline:1px solid var(--ph);outline-offset:1px}
+@media (max-width:640px){ .panel{font-size:12px;gap:0} .panel .credit{display:none} }
+@media (max-height:520px){ :root{--nav:1.9rem} .panel{font-size:12px} }
+
+/* Parchment sets a height on #gameport from the visual viewport; the tube decides instead */
+#gameport{position:absolute;inset:var(--inset);height:auto !important;color:var(--ph);
+  text-shadow:0 0 .45em rgb(var(--ph-rgb) / .55)}
+#gameport ::selection{background:var(--ph);color:var(--tube);text-shadow:none}
+.WindowFrame{background:none}
+.BufferWindow{scrollbar-width:none;scrollbar-gutter:auto}
+.BufferWindow::-webkit-scrollbar{display:none}
+.BufferWindowInner{padding:.3em .6em}
+
+/* one size and one weight, as on the card: bold is high intensity, italic is underline */
+span.Style_header,span.Style_subheader,span.Style_alert,span.Style_input,input.Input{font-weight:400;color:var(--ph-hi)}
+span.Style_header,span.Style_subheader,span.Style_alert,span.Style_input{text-shadow:0 0 .5em rgb(var(--ph-rgb) / .9)}
+.BufferWindow span.Style_header{font-size:1em}
+span.Style_emphasized,span.Style_note{font-style:normal;text-decoration:underline;text-underline-offset:.15em}
+input.Input{caret-color:var(--ph-hi);caret-shape:block;text-shadow:inherit;border-radius:0}
+.BufferLine a,.GridLine a{color:inherit}
+
+/* the status line is a reverse-video bar */
+.GridWindow{padding:0 .6em}
+.GridWindow.reverse{text-shadow:none;box-shadow:0 0 .7em rgb(var(--ph-rgb) / .45)}
+.BufferLine span.reverse{text-shadow:none}
+
+/* before the story file has loaded: a DOS prompt */
+#loadingpane{top:0;left:0;text-align:left;padding:.3em .6em;font-size:var(--px);line-height:1.3}
+.cur{display:inline-block;width:.64em;height:.14em;margin-left:.05em;background:currentColor;box-shadow:0 0 .45em rgb(var(--ph-rgb) / .55);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){ .cur{animation:none} }
+
+/* save and restore dialogs, errors */
+#dialog_screen{background:#000;opacity:.6}
+#dialog{width:auto;max-width:min(30em,92%);margin-top:12%;background:var(--tube);color:var(--ph);border:2px solid var(--ph);
+  border-radius:0;box-shadow:0 0 1em rgb(var(--ph-rgb) / .35);font-size:var(--px)}
+#dialog .DiaWarning{font-size:inherit;font-style:normal}
+#dialog input,#dialog select,#dialog button{font:inherit;color:var(--ph-hi);background:var(--tube);border:1px solid var(--ph);border-radius:0;padding:.1em .4em;text-shadow:inherit}
+#dialog input:focus,#dialog select:focus{outline:1px solid var(--ph-hi);outline-offset:1px}
+#dialog button:hover,#dialog button:focus-visible{background:var(--ph);color:var(--tube);text-shadow:none;outline:0}
+#dialog .DiaDisplayText{font-size:inherit;background:none}
+#errorpane,#errorpane:hover,#errorpane.WarningPane,#errorpane.WarningPane:hover{z-index:6;background:var(--tube);border:0;border-bottom:2px solid var(--ph)}
+#errorcontent{font-size:var(--px);text-align:left;padding:.3em .6em}
+noscript p{margin:.3em .6em;font-size:var(--px);line-height:1.3}
